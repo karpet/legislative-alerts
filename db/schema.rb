@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209042136) do
+ActiveRecord::Schema.define(version: 20170209051606) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,9 +23,10 @@ ActiveRecord::Schema.define(version: 20170209042136) do
     t.string   "image"
     t.string   "phone"
     t.string   "urls"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "secrettoken"
+    t.string   "refreshtoken"
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 

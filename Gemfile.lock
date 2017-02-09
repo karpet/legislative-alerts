@@ -465,7 +465,7 @@ DEPENDENCIES
   faker
   fakeredis
   gibbon
-  google-api-client
+  google-api-client (= 0.9.28)
   guard-cucumber
   guard-rspec (~> 4.6.4)
   haml-rails

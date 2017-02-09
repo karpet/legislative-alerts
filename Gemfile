@@ -107,4 +107,4 @@ gem 'twitter'
 gem 'omniauth-github'
 gem 'octokit'
 gem 'omniauth-google-oauth2'
-gem 'google-api-client', require: 'google/api_client'
+gem 'google-api-client', '0.9.28', require: ['google/apis/plus_v1']
