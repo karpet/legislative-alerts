@@ -8,6 +8,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     generic_callback( 'github' )
   end
+  def google_oauth2
+    generic_callback( 'google_oauth2' )
+  end
+
 
 
 
