@@ -32,4 +32,25 @@ class User < ApplicationRecord
     @facebook_client ||= Facebook.client( access_token: facebook.accesstoken )
   end
 
+  def twitter
+    identities.where( :provider => "twitter" ).first
+  end
+
+  def twitter_client
+    @twitter_client ||= Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV['TWITTER_APP_ID']
+      config.consumer_secret     = ENV['TWITTER_APP_SECRET']
+      config.access_token        = twitter.accesstoken
+      config.access_token_secret = twitter.secrettoken
+    end
+  end
+
+  def github
+    identities.where( :provider => "github" ).first
+  end
+
+  def github_client
+    @github_client ||= Octokit::Client.new(access_token: github.accesstoken)
+  end
+
 end

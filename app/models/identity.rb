@@ -8,6 +8,7 @@ class Identity < ActiveRecord::Base
     identity = create(uid: auth.uid, provider: auth.provider) if identity.nil?
     if auth.credentials
       identity.accesstoken = auth.credentials.token
+      identity.secrettoken = auth.credentials.secret
     end
     if auth.info
       identity.name = auth.info.name

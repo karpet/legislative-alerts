@@ -2,6 +2,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     generic_callback( 'facebook' )
   end
+  def twitter
+    generic_callback( 'twitter' )
+  end
+  def github
+    generic_callback( 'github' )
+  end
+
+
 
   def generic_callback( provider )
     @identity = Identity.find_for_oauth request.env["omniauth.auth"]
