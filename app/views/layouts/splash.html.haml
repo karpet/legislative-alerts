@@ -30,6 +30,11 @@
             = link_to "About", "#about"
             = link_to "Features", "#features"
             = link_to "Contact", "#contact"
+            - if current_user.present?
+              = link_to 'Sign out', destroy_user_session_path, method: 'delete'
+            - else
+              = link_to 'Sign in', new_user_session_path
+            
 
     = yield
 
