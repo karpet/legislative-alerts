@@ -6,12 +6,5 @@
           .panel-body
             = f.error_notification
 
-            = f.input :email, required: true, autofocus: true
-            = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-            = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-          .panel-footer
-            .buttons
-              = f.button :submit, "Log in", class: "btn-primary"
-
             .links
               = render "devise/shared/links"
