@@ -12,6 +12,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
+gem 'openstates'
+
 group :development, :test do
 end
 
@@ -27,9 +29,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5.0'
   gem 'factory_girl_rails'
   gem 'capybara'
-#  gem 'cucumber-rails', branch: 'rails-5', require: false
-#  gem 'guard-rspec', '~> 4.6.4', require: false
-#  gem 'guard-cucumber'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'vcr'
