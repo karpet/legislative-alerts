@@ -58,7 +58,6 @@ GEM
       sass (>= 3.3.4)
     buftok (0.2.0)
     builder (3.2.3)
-    byebug (9.0.6)
     cancancan (1.15.0)
     capybara (2.12.0)
       addressable
@@ -80,23 +79,6 @@ GEM
       safe_yaml (~> 1.0.0)
     css_parser (1.4.8)
       addressable
-    cucumber (2.4.0)
-      builder (>= 2.1.2)
-      cucumber-core (~> 1.5.0)
-      cucumber-wire (~> 0.0.1)
-      diff-lcs (>= 1.1.3)
-      gherkin (~> 4.0)
-      multi_json (>= 1.7.5, < 2.0)
-      multi_test (>= 0.1.2)
-    cucumber-core (1.5.0)
-      gherkin (~> 4.0)
-    cucumber-rails (1.4.5)
-      capybara (>= 1.1.2, < 3)
-      cucumber (>= 1.3.8, < 4)
-      mime-types (>= 1.16, < 4)
-      nokogiri (~> 1.5)
-      railties (>= 3, < 5.1)
-    cucumber-wire (0.0.1)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (4.2.0)
@@ -122,13 +104,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
-    fakeredis (0.6.0)
-      redis (~> 3.2)
     faraday (0.10.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.17)
-    formatador (0.2.5)
-    gherkin (4.0.0)
     gibbon (3.0.1)
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
@@ -151,24 +128,6 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
-    guard (2.14.1)
-      formatador (>= 0.2.4)
-      listen (>= 2.7, < 4.0)
-      lumberjack (~> 1.0)
-      nenv (~> 0.1)
-      notiffany (~> 0.0)
-      pry (>= 0.9.12)
-      shellany (~> 0.0)
-      thor (>= 0.18.1)
-    guard-compat (1.2.1)
-    guard-cucumber (2.1.2)
-      cucumber (~> 2.0)
-      guard-compat (~> 1.0)
-      nenv (~> 0.1)
-    guard-rspec (4.6.5)
-      guard (~> 2.1)
-      guard-compat (~> 1.1)
-      rspec (>= 2.99.0, < 4.0)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -177,10 +136,6 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
-    happy_seed (0.0.21)
-      rack (~> 2.x)
-      rails (~> 5.0.0)
-      thor
     hashdiff (0.3.2)
     hashie (3.5.1)
     html2haml (2.1.0)
@@ -211,20 +166,12 @@ GEM
     jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
-    listen (3.0.8)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
     little-plugger (1.1.4)
     logging (2.1.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    lograge (0.4.1)
-      actionpack (>= 4, < 5.1)
-      activesupport (>= 4, < 5.1)
-      railties (>= 4, < 5.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    lumberjack (1.0.11)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     memoist (0.15.0)
@@ -240,17 +187,12 @@ GEM
     minitest (5.10.1)
     modernizr-rails (2.7.1)
     multi_json (1.12.1)
-    multi_test (0.1.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     naught (1.1.0)
-    nenv (0.3.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    notiffany (0.1.1)
-      nenv (~> 0.1)
-      shellany (~> 0.0)
     oauth (0.5.1)
     oauth2 (1.3.0)
       faraday (>= 0.8, < 0.11)
@@ -291,10 +233,6 @@ GEM
     premailer-rails (1.9.5)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
-    pry (0.10.4)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
     public_suffix (2.0.5)
     puma (3.7.0)
     rack (2.0.1)
@@ -333,11 +271,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
-    rb-fsevent (0.9.8)
-    rb-inotify (0.9.8)
-      ffi (>= 0.5.0)
     rdiscount (2.2.0.1)
-    redis (3.3.3)
     representable (2.3.0)
       uber (~> 0.0.7)
     responders (2.3.0)
@@ -378,7 +312,6 @@ GEM
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
     sexp_processor (4.8.0)
-    shellany (0.0.1)
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -388,16 +321,6 @@ GEM
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
     simple_oauth (0.3.1)
-    slop (3.6.0)
-    spring (2.0.1)
-      activesupport (>= 4.2)
-    spring-commands-cucumber (1.0.1)
-      spring (>= 0.9.1)
-    spring-commands-rspec (1.0.4)
-      spring (>= 0.9.1)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -430,11 +353,6 @@ GEM
     vcr (3.0.3)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.4.0)
-      actionview (>= 5.0)
-      activemodel (>= 5.0)
-      debug_inspector
-      railties (>= 5.0)
     webmock (2.3.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -453,28 +371,20 @@ DEPENDENCIES
   bh
   binding_of_caller
   bootstrap-sass
-  byebug
   cancancan
   capybara
   coffee-rails (~> 4.2)
-  cucumber-rails
   database_cleaner
   devise (~> 4.2)
   dotenv-rails
   factory_girl_rails
   faker
-  fakeredis
   gibbon
   google-api-client (= 0.9.28)
-  guard-cucumber
-  guard-rspec (~> 4.6.4)
   haml-rails
-  happy_seed
   jbuilder (~> 2.5)
   jquery-rails
   launchy
-  listen (~> 3.0.5)
-  lograge
   meta-tags
   modernizr-rails
   nokogiri
@@ -497,16 +407,10 @@ DEPENDENCIES
   rspec-rails (~> 3.5.0)
   sass-rails (~> 5.0)
   simple_form
-  spring
-  spring-commands-cucumber
-  spring-commands-rspec
-  spring-watcher-listen (~> 2.0.0)
   sqlite3
   twitter
-  tzinfo-data
   uglifier (>= 1.3.0)
   vcr
-  web-console (>= 3.3.0)
   webmock
 
 BUNDLED WITH

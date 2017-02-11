@@ -41,34 +41,4 @@ RSpec.describe SplashController, :type => :controller do
       ENV['GOOGLE_ANALYTICS_SITE_ID'] = nil
     end
   end
-
-  context "mailing list signup" do
-    it "should require mailchimp env to be setup" do
-      ENV["MAILCHIMP_SPLASH_SIGNUP_LIST_ID"] = nil
-      ENV["MAILCHIMP_API_KEY"] = nil
-
-      post :signup, xhr: true
-
-      expect( assigns( :message) ).to include( "environment variables need to be set" )
-    end
-
-    it "should talk to mail chimp if the ENV is set" do
-      ENV["MAILCHIMP_SPLASH_SIGNUP_LIST_ID"] = "1"
-      ENV["MAILCHIMP_API_KEY"] = "1"
-      # assign( :gibbon_api, double( "API" ) )
-
-      stub_request(:post, "https://api.mailchimp.com/2.0/lists/subscribe").
-        with(:body => "{\"apikey\":\"1\",\"id\":\"1\",\"email\":{\"email\":null},\"double_optin\":true}").
-        to_return(:status => 200, :body => "", :headers => {})
-
-      
-      post :signup, xhr: true, params: { email: "wschenk@gmail.com" }
-
-      expect( assigns( :message) ).not_to include( "environment variables need to be set" )
-
-      ENV["MAILCHIMP_SPLASH_SIGNUP_LIST_ID"] = nil
-      ENV["MAILCHIMP_API_KEY"] = nil
-
-    end
-  end
 end
