@@ -1,0 +1,26 @@
+%table.table
+
+  - @bills.each do |bill|
+    %tr
+      %td.actions
+        = render partial: 'actions', locals: { bill: bill }
+      %td.result
+        .bill_id
+          = link_to bill.bill_id, bill.url, target: '_blank'
+          %span.glyphicon.glyphicon-new-window
+          %span.state
+            (
+            = bill.state.upcase
+            = bill.session
+            )
+        .title
+          = bill.title
+        .updated_at
+          %strong Last updated: 
+          = bill.updated_at
+
+- content_for :javascripts do
+  :javascript
+    $('.actions button').each(function(idx) {
+      LegAlerts.handleFollows($(this));
+    });

@@ -4,4 +4,10 @@ Rails.application.routes.draw do
   root 'splash#index'
 
   resources :alerts
+
+  get '/search' => 'search#index'
+
+  post '/bills/:id/follow' => 'bills#follow'
+  post '/bills/:id/unfollow' => 'bills#unfollow'
+
 end

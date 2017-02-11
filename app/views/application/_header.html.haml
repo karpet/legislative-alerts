@@ -5,7 +5,6 @@
       Home
   = horizontal do
     = nav class: 'navbar-right' do
-      = link_to 'Your alerts', alerts_path
-      = link_to 'Contact', "/#contact"
-      = link_to 'About', "/#about"
+      = link_to 'Alerts', alerts_path
+      = link_to 'Search', search_path
       = render partial: "application/account_dropdown"
