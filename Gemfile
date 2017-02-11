@@ -16,6 +16,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'listen', '~> 3.0.5'
 end
 
 gem 'rails_12factor'
