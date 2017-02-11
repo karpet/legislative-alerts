@@ -4,3 +4,5 @@ rvm:
 sudo: false
 notifications:
   email: false
+before_script:
+  - bin/rake db:setup --trace
