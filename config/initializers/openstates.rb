@@ -5,10 +5,14 @@ end
 
 module OpenStatesExtensions
   module Bill
-    def url
+    def os_url
       sprintf("https://openstates.org/%s/bills/%s/%s",
         state, session, bill_id.gsub(/\W/, '')
       )
+    end
+
+    def api_url
+      sprintf("https://openstates.org/api/v1/bills/%s/", id)
     end
   end
 end

@@ -29,7 +29,7 @@ class SearchController < ApplicationController
   end
 
   def per_page
-    search_params[:per_page] || '50'
+    search_params[:per_page] || '10'
   end
 
   def query

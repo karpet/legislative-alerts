@@ -42,5 +42,22 @@ LegAlerts = {
       }
       LegAlerts.toggleFollow(btn);
     });
+  },
+
+  showBillDetails: function(bill) {
+    var modal = $('#bill-details-modal');
+    modal.find('.ajax-loader').hide();
+    modal.on('hide.bs.modal', function() {
+      modal.find('.ajax-loader').show();
+    });
+    modal.find('.modal-title').text(bill.bill_id);
+    var actions_html = [];
+    $.each(bill.actions, function(idx) {
+      var action = this;
+      var html = action.date;
+      html += '<br/>' + action.action;
+      actions_html.push(html);
+    });
+    modal.find('.modal-body').html(actions_html.join('<hr/>'));
   }
 }

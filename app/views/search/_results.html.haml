@@ -6,21 +6,30 @@
         = render partial: 'actions', locals: { bill: bill }
       %td.result
         .bill_id
-          = link_to bill.bill_id, bill.url, target: '_blank'
+          = link_to bill.bill_id, bill.api_url, remote: true,
+              data: { toggle: 'modal', target: '#bill-details-modal' }
+          &nbsp;
+          &#183;
+          &nbsp;
           %span.glyphicon.glyphicon-new-window
-          %span.state
-            (
-            = bill.state.upcase
-            = bill.session
-            )
+          = link_to 'View on OpenStates.org', bill.os_url, target: '_blank'
+        .session
+          = bill.state.upcase
+          Session
+          = bill.session
         .title
           = bill.title
         .updated_at
-          %strong Last updated: 
+          Updated:
           = bill.updated_at
+
+= render 'modal'
 
 - content_for :javascripts do
   :javascript
     $('.actions button').each(function(idx) {
       LegAlerts.handleFollows($(this));
+    });
+    $('a[data-remote]').on('ajax:success', function(e, data, status, xhr) {
+      LegAlerts.showBillDetails(data);
     });
