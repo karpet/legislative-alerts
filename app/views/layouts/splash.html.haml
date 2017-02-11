@@ -28,7 +28,6 @@
         = horizontal do
           = nav class: 'navbar-right' do
             = link_to "About", "#about"
-            = link_to "Features", "#features"
             = link_to "Contact", "#contact"
             - if current_user.present?
               = link_to 'Profile', edit_user_registration_path
