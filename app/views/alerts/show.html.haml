@@ -8,8 +8,8 @@
     %dl
       %dt Description
       %dd
-        = @alert.description
+        = @alert.description.html_safe
 
       %dt Query
       %dd
-        = @alert.query
+        = @alert.query.html_safe
