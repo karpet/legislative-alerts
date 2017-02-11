@@ -7,7 +7,7 @@
         %p.info Track U.S.A state legislatures
 
         - if user_signed_in?
-          = link_to 'My Alerts', alerts_path, class: "btn btn-primary btn-lg"
+          = link_to 'Your Alerts', alerts_path, class: "btn btn-primary btn-lg"
         - else
           = link_to "Get started", new_user_session_path, class: "btn btn-primary btn-lg"
 
@@ -20,9 +20,9 @@
         %p
           Easily search for and receive email whenever activity occurs around bills within state legislatures.
         %p
-          It would not be possible without the
+          It would not be possible without the&nbsp;
           = link_to 'OpenStates', 'https://openstates.org/', class: 'btn btn-primary-inverted'
-          API.
+          &nbsp; API.
 
 %section.contact#contact
   .container

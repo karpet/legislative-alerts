@@ -14,6 +14,8 @@ class User < ApplicationRecord
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
 
   has_many :identities, dependent: :destroy
+  has_many :alerts, dependent: :destroy
+
   enum role: [:user, :admin]
 
   devise :omniauthable, :database_authenticatable, :registerable,

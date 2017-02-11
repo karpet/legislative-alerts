@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209051606) do
+ActiveRecord::Schema.define(version: 20170211043435) do
+
+  create_table "alerts", force: :cascade do |t|
+    t.string   "uuid"
+    t.string   "name"
+    t.string   "description"
+    t.text     "query"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["uuid"], name: "index_alerts_on_uuid", unique: true
+  end
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"

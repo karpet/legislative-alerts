@@ -1,0 +1,17 @@
+.container
+  .row
+
+    = link_to 'Create new alert', new_alert_path, class: 'btn btn-primary'
+
+    %h2 Your alerts
+
+    %table.table
+      - current_user.alerts.each do |alert|
+        %tr
+          %td
+            = link_to alert.name, alert
+          %td
+            = alert.description
+          %td
+            = alert.pretty_query
+

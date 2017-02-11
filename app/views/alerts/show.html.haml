@@ -1,0 +1,15 @@
+.container
+  .row
+
+    %h2
+      Alert:&nbsp;
+      = link_to @alert.name.html_safe, edit_alert_path(@alert)
+
+    %dl
+      %dt Description
+      %dd
+        = @alert.description
+
+      %dt Query
+      %dd
+        = @alert.query
