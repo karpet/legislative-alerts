@@ -3,7 +3,7 @@ LegAlerts = {
     var bill_id = btn.data('billId');
     var url = '/bills/'+bill_id+'/unfollow';
     $.post(url, btn.data(), function(rsp) {
-      console.log('rsp', rsp);
+      //console.log('rsp', rsp);
     })
     .fail(function() {
       btn.text('Following');
@@ -15,7 +15,7 @@ LegAlerts = {
     var bill_id = btn.data('billId');
     var url = '/bills/'+bill_id+'/follow';
     $.post(url, btn.data(), function(rsp) {
-      console.log('rsp', rsp);
+      //console.log('rsp', rsp);
     })
     .fail(function() {
       btn.text('Follow');
@@ -52,12 +52,13 @@ LegAlerts = {
     });
     modal.find('.modal-title').text(bill.bill_id);
     var actions_html = [];
-    $.each(bill.actions, function(idx) {
+    $.each(bill.actions.reverse(), function(idx) {
       var action = this;
-      var html = action.date;
+      var html = action.date.replace(/\ .+/, '');
       html += '<br/>' + action.action;
-      actions_html.push(html);
+      actions_html.push('<div class="action">'+html+'</div>');
     });
-    modal.find('.modal-body').html(actions_html.join('<hr/>'));
+    modal.find('.title').text(bill.title);
+    modal.find('.actions').html(actions_html.join(''));
   }
 }

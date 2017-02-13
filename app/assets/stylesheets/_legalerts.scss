@@ -1,14 +1,29 @@
 .search {
   .result {
-  padding: 1em;
+    padding: 1em;
 
-  .glyphicon {
-    color: #ccc;
-  }
+    .glyphicon {
+      color: #ccc;
+    }
 
-  .updated_at {
-    color: #aaa;
+    .updated_at {
+      color: #aaa;
+      font-size: 90%;
+    }
+
+    .os-link {
+      font-size: 90%;
+      opacity: 0.8;
+    }
   }
+}
+
+#bill-details-modal {
+  .action {
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    margin-bottom: 1em;
+    padding: 1em;
   }
 }
 

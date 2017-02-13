@@ -11,8 +11,9 @@
           &nbsp;
           &#183;
           &nbsp;
-          %span.glyphicon.glyphicon-new-window
-          = link_to 'View on OpenStates.org', bill.os_url, target: '_blank'
+          %span.os-link
+            %span.glyphicon.glyphicon-new-window
+            = link_to 'View on OpenStates.org', bill.os_url, target: '_blank'
         .session
           = bill.state.upcase
           Session
