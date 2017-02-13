@@ -5,5 +5,5 @@ sudo: false
 notifications:
   email: false
 before_script:
-  - bin/rails db:reset db:setup db:migrate --trace
+  - bin/rails db:migrate db:reset db:setup --trace
 cache: bundler
