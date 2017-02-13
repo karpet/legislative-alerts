@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170211141657) do
     t.datetime "updated_at",              null: false
     t.datetime "last_run_at"
     t.string   "checksum"
-    t.integer  "type",        default: 0
+    t.integer  "alert_type",  default: 0
     t.index ["uuid"], name: "index_alerts_on_uuid", unique: true
   end
 

@@ -3,7 +3,7 @@ class Alert < ApplicationRecord
 
   before_create :generate_uuid
 
-  enum type: { bill: 0, search: 1 }
+  enum alert_type: { bill: 0, search: 1 }
 
   def to_param
     uuid
@@ -18,16 +18,13 @@ class Alert < ApplicationRecord
   end
 
   def parsed_query
-    JSON.parse(query, symbolize_keys: true)
+    JSON.parse(query, symbolize_names: true)
   end
 
   # execute the query and determine if anything has changed
   def check
-    if type == :bill
-      check_bill
-    elsif type == :search
-      check_search
-    end
+    method_name = "check_#{alert_type}"
+    send method_name
   end
 
   private
@@ -42,7 +39,7 @@ class Alert < ApplicationRecord
   def bill_has_changed?(bill)
     last_action_newer = DateTime.parse(bill.action_dates[:last]) > last_run_at
     checksum_changed = checksum != os_checksum(bill)
-    last_action_newer || checksum_changed
+    last_action_newer || (checksum_changed && checksum.present?)
   end
 
   def os_checksum(os_payload)

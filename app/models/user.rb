@@ -131,7 +131,8 @@ class User < ApplicationRecord
       query: query_for_bill(bill_params[:billId]),
       name: bill_params[:billName],
       description: bill_params[:billDescription],
-      type: :bill,
+      alert_type: :bill,
+      last_run_at: Time.zone.now,
     )
   end
 
