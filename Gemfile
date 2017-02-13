@@ -54,6 +54,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'sinatra', '2.0.0.beta2'
   gem 'timecop'
 end
 
