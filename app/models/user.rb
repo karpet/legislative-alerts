@@ -113,4 +113,32 @@ class User < ApplicationRecord
     @google_oauth2_client ||= GoogleAppsClient.client( google_oauth2 )
   end
 
+  def following?(bill)
+    alerts.select do |alert|
+      alert.query =~ /#{bill.bill_id}/ || 
+        alert.query =~ /#{bill.id}/
+    end.any?
+  end
+
+  def find_alert_for_bill(bill_id)
+    alerts.find do |alert|
+      alert.query == query_for_bill(bill_id)
+    end
+  end
+
+  def create_alert_for_bill(bill_params)
+    alerts.create(
+      query: query_for_bill(bill_params[:billId]),
+      name: bill_params[:billName],
+      description: bill_params[:billDescription],
+      alert_type: :bill,
+      last_run_at: Time.zone.now,
+    )
+  end
+
+  private
+
+  def query_for_bill(bill_id)
+    { os_bill_id: bill_id }.to_json
+  end
 end

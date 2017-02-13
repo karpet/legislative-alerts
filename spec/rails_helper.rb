@@ -23,8 +23,3 @@ RSpec.configure do |config|
     config.include ::Rails::Controller::Testing::Integration, :type => type
   end
 end
-
-VCR.configure do |c|
-  c.cassette_library_dir  = Rails.root.join('spec', 'vcr')
-  c.hook_into :webmock
-end

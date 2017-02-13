@@ -3,13 +3,18 @@
 
     %h2
       Alert:&nbsp;
-      = link_to @alert.name.html_safe, edit_alert_path(@alert)
+      = link_to @alert.name.try(:html_safe), edit_alert_path(@alert)
 
     %dl
       %dt Description
       %dd
-        = @alert.description
+        = @alert.description.try(:html_safe)
 
       %dt Query
       %dd
-        = @alert.query
+        = @alert.query.try(:html_safe)
+
+  .row
+
+    = link_to 'Edit', edit_alert_path(@alert), class: 'btn btn-primary'
+    = link_to 'Delete', alert_path(@alert), method: 'delete', class: 'btn btn-danger'
