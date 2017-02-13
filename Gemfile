@@ -5,14 +5,37 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.0.1'
-gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'jquery-rails'
+#gem 'coffee-rails', '~> 4.2'
+gem 'bh'
+gem 'bootstrap-sass'
+gem 'cancancan'
+gem 'delayed_job_active_record'
+gem 'devise', '~> 4.2'
+gem 'gibbon'
+gem 'google-api-client', '0.9.28', require: ['google/apis/plus_v1']
+gem 'haml-rails'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
+gem 'meta-tags', require: 'meta_tags'
+gem 'modernizr-rails'
+gem 'nokogiri'
+gem 'octokit'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-oauth2', '1.3.1'
+gem 'omniauth-twitter'
 gem 'openstates'
+gem 'premailer-rails'
+gem 'puma', '~> 3.0'
+gem 'rails', '~> 5.0.1'
+gem 'rails_12factor'
+gem 'responders', '~> 2.0'
+gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
+gem 'twitter'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
 end
@@ -21,8 +44,6 @@ group :development do
   gem 'listen', '~> 3.0.5'
 end
 
-gem 'rails_12factor'
-gem 'haml-rails'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec', '~> 3.5.0'
@@ -48,24 +69,3 @@ group :production do
   gem 'pg'
 #  gem 'lograge'
 end
-
-gem 'bootstrap-sass'
-gem 'modernizr-rails'
-gem 'meta-tags', require: 'meta_tags'
-gem 'responders', '~> 2.0'
-gem 'bh'
-gem 'simple_form'
-gem 'gibbon'
-gem 'premailer-rails'
-gem 'nokogiri'
-gem 'devise', '~> 4.2'
-gem 'cancancan'
-gem 'omniauth'
-gem 'omniauth-oauth2', '1.3.1'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-gem 'twitter'
-gem 'omniauth-github'
-gem 'octokit'
-gem 'omniauth-google-oauth2'
-gem 'google-api-client', '0.9.28', require: ['google/apis/plus_v1']
