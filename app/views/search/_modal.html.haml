@@ -1,0 +1,16 @@
+#bill-details-modal.modal.fade{tabindex: "-1", role: 'dialog'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} &times;
+        %h3.modal-title bill id
+      .modal-body
+        .ajax-loader
+          %span.glyphicon.glyphicon-refresh.right-spinner
+        .title
+          the title
+        .activity
+          %h4 Activity
+          .actions
+      .modal-footer
+        %button.btn{"data-dismiss" => "modal", type: "button"} Close

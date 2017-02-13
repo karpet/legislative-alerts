@@ -1,0 +1,6 @@
+- if current_user.following?(bill)
+  %button.btn.btn-success.following{data: { bill_id: bill.id, bill_name: bill.bill_id, bill_description: bill.title }}
+    Following
+- else
+  %button.btn.btn-default.follow{data: { bill_id: bill.id, bill_name: bill.bill_id, bill_description: bill.title }}
+    Follow

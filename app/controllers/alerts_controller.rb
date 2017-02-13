@@ -26,6 +26,11 @@ class AlertsController < ApplicationController
     redirect_to alert
   end
 
+  def destroy
+    alert.destroy
+    redirect_to alerts_path
+  end
+
   private
 
   def alert_params
