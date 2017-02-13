@@ -1,0 +1,17 @@
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8' 'http-equiv' => 'Content-Type'}
+
+  %body
+
+    %p
+      You requested an email message every time
+      = @alert.name
+      showed signs of life.
+
+    %p
+      As you requested:
+      = link_to @alert.name, @alert.public_url
+
+    %p
+      %strong Please do not reply to this message.

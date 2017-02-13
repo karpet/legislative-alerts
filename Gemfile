@@ -26,7 +26,7 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-twitter'
-gem 'openstates'
+gem 'openstates', github: 'legalerts/ruby-openstates', branch: 'find-bill-by-os-id'
 gem 'premailer-rails'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.1'
@@ -36,9 +36,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'twitter'
 gem 'uglifier', '>= 1.3.0'
-
-group :development, :test do
-end
 
 group :development do
   gem 'listen', '~> 3.0.5'
@@ -52,16 +49,16 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'vcr'
-  gem 'faker'
+  gem 'mailcatcher'
   gem 'dotenv-rails'
-  gem 'rdiscount'
   gem 'rails-controller-testing'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'timecop'
 end
 
 group :test do
+  gem 'faker'
   gem 'webmock'
 end
 

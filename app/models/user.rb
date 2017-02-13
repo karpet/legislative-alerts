@@ -131,6 +131,7 @@ class User < ApplicationRecord
       query: query_for_bill(bill_params[:billId]),
       name: bill_params[:billName],
       description: bill_params[:billDescription],
+      type: :bill,
     )
   end
 
