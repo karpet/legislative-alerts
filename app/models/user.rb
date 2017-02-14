@@ -19,7 +19,8 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
 
   devise :omniauthable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable
+         :recoverable, :rememberable, :trackable,
+         omniauth_providers: [:github, :twitter, :google_oauth2]
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
