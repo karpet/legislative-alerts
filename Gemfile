@@ -5,12 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-#gem 'coffee-rails', '~> 4.2'
+ruby '2.3.3'
+
 gem 'bh'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'delayed_job_active_record'
 gem 'devise', '~> 4.2'
+gem 'dotenv-rails'
 gem 'gibbon'
 gem 'google-api-client', '0.9.28', require: ['google/apis/plus_v1']
 gem 'haml-rails'
@@ -50,7 +52,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'mailcatcher'
-  gem 'dotenv-rails'
   gem 'rails-controller-testing'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -65,5 +66,5 @@ end
 
 group :production do
   gem 'pg'
-#  gem 'lograge'
+  gem 'lograge'
 end
