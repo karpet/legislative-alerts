@@ -14,6 +14,10 @@ module OpenStatesExtensions
     def api_url
       sprintf("https://openstates.org/api/v1/bills/%s/", id)
     end
+
+    def desc
+      sprintf("[%s %s] %s", state.upcase, session, title)
+    end
   end
 end
 
