@@ -21,10 +21,22 @@ class Alert < ApplicationRecord
     JSON.parse(query, symbolize_names: true)
   end
 
+  def url_query
+    if alert_type == :bill
+      "q=#{parsed_query[:os_bill_id]}"
+    else
+      parsed_query.to_query
+    end
+  end
+
   # execute the query and determine if anything has changed
   def check
     method_name = "check_#{alert_type}"
     send method_name
+  end
+
+  def public_url
+    "#{Rails.application.routes.url_helpers.root_url}search?#{url_query}"
   end
 
   private
