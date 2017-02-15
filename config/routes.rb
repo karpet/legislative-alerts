@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :alerts
 
+  post '/alerts/:id/send' => 'alerts#send_mail', as: :send_alert
+
   get '/search' => 'search#index'
   get '/search/:id' => 'search#show'
 

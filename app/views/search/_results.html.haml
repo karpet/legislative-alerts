@@ -6,9 +6,8 @@
         - if current_user
           = render partial: 'actions', locals: { bill: bill }
         - else
-          %span
-            = link_to 'Sign in', new_user_session_path
-            to follow bills
+          .sign-in-no-action
+            = link_to 'Sign in for alerts', new_user_session_path, class: 'btn btn-default'
       %td.result
         .bill_id
           = link_to bill.bill_id, bill.api_url, remote: true,

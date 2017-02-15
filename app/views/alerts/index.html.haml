@@ -5,13 +5,18 @@
 
     %h2 Your alerts
 
-    %table.table
+    %table.table.alerts
+      %tr
+        %th Name
+        %th Description
+        %th Last sent
+
       - current_user.alerts.each do |alert|
         %tr
-          %td
+          %td.name
             = link_to alert.name, alert
-          %td
+          %td.description
             = alert.description
-          %td
-            = alert.pretty_query
+          %td.last_sent
+            = alert.last_sent_at
 

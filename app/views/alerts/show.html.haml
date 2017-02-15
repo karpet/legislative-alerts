@@ -1,20 +1,29 @@
 .container
   .row
+    .leg-alert
+      %h2
+        Alert:&nbsp;
+        = link_to @alert.name.try(:html_safe), edit_alert_path(@alert)
 
-    %h2
-      Alert:&nbsp;
-      = link_to @alert.name.try(:html_safe), edit_alert_path(@alert)
+      %dl
+        %dt Description
+        %dd
+          = @alert.description.try(:html_safe)
 
-    %dl
-      %dt Description
-      %dd
-        = @alert.description.try(:html_safe)
+        %dt Query
+        %dd
+          = @alert.query.try(:html_safe)
 
-      %dt Query
-      %dd
-        = @alert.query.try(:html_safe)
+        %dt Last checked
+        %dd
+          = @alert.last_run_at
+
+        %dt Last sent
+        %dd
+          = @alert.last_sent_at
 
   .row
 
     = link_to 'Edit', edit_alert_path(@alert), class: 'btn btn-primary'
     = link_to 'Delete', alert_path(@alert), method: 'delete', class: 'btn btn-danger'
+    = link_to 'Send now', send_alert_path(@alert), class: 'btn btn-default', method: 'post'

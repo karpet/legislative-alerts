@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate
 
+  before_action :store_current_location, unless: :devise_controller?
+
   def authenticate
     unless ENV['HTTP_AUTH_USERNAME'].blank? or ENV['HTTP_AUTH_PASSWORD'].blank?
       authenticate_or_request_with_http_basic do |username, password|
@@ -13,6 +15,12 @@ class ApplicationController < ActionController::Base
 
   def access_denied(exception)
     redirect_to root_path, alert: exception.message
+  end
+
+  private
+
+  def store_current_location
+    store_location_for(:user, request.url)
   end
 
 end

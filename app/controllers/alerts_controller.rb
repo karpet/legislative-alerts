@@ -31,6 +31,13 @@ class AlertsController < ApplicationController
     redirect_to alerts_path
   end
 
+  def send_mail
+    AlertMailer.user_alert(alert).deliver_later
+    alert.mark_as_sent
+    flash[:notice] = 'Email alert is on its way'
+    redirect_to alert_path(alert)
+  end
+
   private
 
   def alert_params

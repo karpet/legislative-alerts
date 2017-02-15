@@ -16,6 +16,31 @@
       opacity: 0.8;
     }
   }
+
+  .actions {
+    min-width: 110px;
+    padding-top: 1em;
+  }
+}
+
+.alerts {
+  .name {
+    min-width: 80px;
+  }
+  .description {
+    max-width: 300px;
+  }
+}
+
+.leg-alert {
+  dl {
+    dt {
+      padding-top: 1em;
+    }
+    dd {
+      padding-bottom: 1em;
+    }
+  }
 }
 
 #bill-details-modal {

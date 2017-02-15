@@ -9,6 +9,7 @@ class AlertChecker
   def run
     alerts.each do |alert|
       AlertMailer.user_alert(alert).deliver_later
+      alert.mark_as_sent
     end
   end
 

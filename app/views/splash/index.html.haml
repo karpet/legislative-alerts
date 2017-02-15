@@ -4,12 +4,12 @@
       .inner-column
         %h1 Legislative Alerts
 
-        %p.info Track U.S.A state legislatures
+        %p.info Track bills in state legislatures
 
         - if user_signed_in?
           = link_to 'Your Alerts', alerts_path, class: "btn btn-primary btn-lg"
         - else
-          = link_to "Get started", new_user_session_path, class: "btn btn-primary btn-lg"
+          = link_to "Get started", '#about', class: "btn btn-primary btn-lg"
 
 %section.colored.primary#about
   .container
@@ -18,11 +18,26 @@
         %h2 What is this site?
 
         %p
-          Easily search for and receive email whenever activity occurs around bills within state legislatures.
+          Search for and receive email alerts whenever action is taken on a bill within a state legislature.
+
+        = simple_form_for(:search, url: search_path,
+          html: { method: 'get', class: 'form-horizontal' },
+          wrapper: :horizontal_form ) do |f|
+
+          .form-inputs
+            = f.input :q, autofocus: true, label: 'Full text', required: false
+            = f.input :state, collection: us_states,
+              label: 'Limit to State', required: false,
+              include_blank: true,
+              input_html: { style: 'width:auto' }
+
+          .buttons
+            = f.button :submit, 'Search', class: "btn-default"
+
         %p
-          It would not be possible without the&nbsp;
-          = link_to 'OpenStates', 'https://openstates.org/', class: 'btn btn-primary-inverted'
-          &nbsp; API.
+          Powered by the
+          = link_to 'OpenStates', 'https://openstates.org/'
+          API.
 
 %section.contact#contact
   .container
@@ -30,6 +45,8 @@
       .inner-column
         %h1 Follow this project
         %ul.list-group
+          %li.list-group-item
+            = link_to 'Email', 'mailto:info@legalerts.us'
           %li.list-group-item
             = link_to 'GitHub', 'https://github.com/legalerts/'
           %li.list-group-item

@@ -39,6 +39,10 @@ class Alert < ApplicationRecord
     os_bill.os_url + '#actions'
   end
 
+  def mark_as_sent
+    update_columns(last_sent_at: Time.zone.now)
+  end
+
   private
 
   def os_bill
