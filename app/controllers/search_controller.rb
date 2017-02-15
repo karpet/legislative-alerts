@@ -8,6 +8,11 @@ class SearchController < ApplicationController
     @bills = OpenStates::Bill.where(query)
   end
 
+  def show
+    query
+    @bills = [OpenStates::Bill.find_by_os_id(params[:id])]
+    render :index
+  end
 
   private
 

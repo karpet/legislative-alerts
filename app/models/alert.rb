@@ -22,10 +22,10 @@ class Alert < ApplicationRecord
   end
 
   def url_query
-    if alert_type == :bill
-      "q=#{parsed_query[:os_bill_id]}"
+    if alert_type == 'bill'
+      '/' + parsed_query[:os_bill_id]
     else
-      parsed_query.to_query
+      '?' + parsed_query.to_query
     end
   end
 
@@ -36,15 +36,18 @@ class Alert < ApplicationRecord
   end
 
   def public_url
-    "#{Rails.application.routes.url_helpers.root_url}search?#{url_query}"
+    os_bill.os_url
   end
 
   private
 
+  def os_bill
+    @_os_bill ||= OpenStates::Bill.find_by_os_id(parsed_query[:os_bill_id])
+  end
+
   def check_bill
-    bill = OpenStates::Bill.find_by_os_id(parsed_query[:os_bill_id])
-    if bill_has_changed?(bill)
-      return update_as_run(os_checksum(bill))
+    if bill_has_changed?(os_bill)
+      return update_as_run(os_checksum(os_bill))
     end
   end
 

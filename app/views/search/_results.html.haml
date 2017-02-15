@@ -3,7 +3,12 @@
   - @bills.each do |bill|
     %tr
       %td.actions
-        = render partial: 'actions', locals: { bill: bill }
+        - if current_user
+          = render partial: 'actions', locals: { bill: bill }
+        - else
+          %span
+            = link_to 'Sign in', new_user_session_path
+            to follow bills
       %td.result
         .bill_id
           = link_to bill.bill_id, bill.api_url, remote: true,
