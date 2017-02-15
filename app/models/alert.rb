@@ -36,7 +36,7 @@ class Alert < ApplicationRecord
   end
 
   def public_url
-    os_bill.os_url
+    os_bill.os_url + '#actions'
   end
 
   private
