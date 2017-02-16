@@ -7,10 +7,10 @@
       = f.error_notification
 
       .form-inputs
-        = f.input :q, autofocus: true, label: 'Full text', required: false,
+        = f.input :q, autofocus: true, label: 'Keyword or issue', required: false,
             input_html: { value: @query[:q] }
         = f.input :state, collection: us_states,
-            label: 'Limit to State', required: false,
+            label: 'Filter by State', required: false,
             selected: @query[:state],
             include_blank: true,
             input_html: { style: 'width:auto' }

@@ -6,6 +6,9 @@
           .panel-body
             = f.error_notification
 
+            %p
+              Wondering where your alerts are? You can select an email address here.
+
             .form-inputs
               = f.input :email, collection: resource.emails, required: true
 

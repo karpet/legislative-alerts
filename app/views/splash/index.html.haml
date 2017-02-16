@@ -8,26 +8,20 @@
 
         - if user_signed_in?
           = link_to 'Your Alerts', alerts_path, class: "btn btn-primary btn-lg"
-        - else
-          = link_to "Get started", '#about', class: "btn btn-primary btn-lg"
-
-%section.colored.primary#about
-  .container
-    .row
-      .inner-column
-        %h2 What is this site?
 
         %p
-          Search for and receive email alerts whenever action is taken on a bill within a state legislature.
+          Search for bills in your state legislature.
+          %br
+          Get email alerts whenever action is taken on a bill.
 
         = simple_form_for(:search, url: search_path,
           html: { method: 'get', class: 'form-horizontal' },
           wrapper: :horizontal_form ) do |f|
 
           .form-inputs
-            = f.input :q, autofocus: true, label: 'Full text', required: false
+            = f.input :q, label: 'Keyword or issue', required: false
             = f.input :state, collection: us_states,
-              label: 'Limit to State', required: false,
+              label: 'Filter by State', required: false,
               include_blank: true,
               input_html: { style: 'width:auto' }
 
@@ -39,11 +33,43 @@
           = link_to 'OpenStates', 'https://openstates.org/'
           API.
 
+%section.colored.primary#about
+  .container
+    .row
+      .inner-column
+        %h1 About this site
+        %p
+          This site was built to scratch one particular itch:
+          %br
+          it was too hard to keep track of where bills are in the legislative process.
+        %p
+          At the federal level, <a href="https://congress.gov/">Congress.gov</a> allows you to
+          receive alerts when bills change status.
+          %br
+          The same feature ought to exist for all 50 states.
+
+        %p
+          That's what this site tries to accomplish:
+          %br
+          single-click follows of bills you are interested in.
+        %p
+          We don't track you.
+          %br
+          We don't care what you're following or what you're searching for.
+          %br
+          We don't sell your email or contact information to anyone.
+          %br
+          We just want to make it
+          easy to keep up-to-date with activity in your state legislature.
+        %p
+          All the code is
+          = link_to 'open source', 'https://github.com/legalerts/'
+
 %section.contact#contact
   .container
     .row
       .inner-column
-        %h1 Follow this project
+        %h1 Get in touch
         %ul.list-group
           %li.list-group-item
             = link_to 'Email', 'mailto:info@legalerts.us'

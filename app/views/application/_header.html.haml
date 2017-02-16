@@ -7,4 +7,9 @@
     = nav class: 'navbar-right' do
       = link_to 'Alerts', alerts_path
       = link_to 'Search', search_path
-      = render partial: "application/account_dropdown"
+      - if user_signed_in?
+        = link_to 'Profile', edit_user_registration_path
+        = link_to 'Sign out', destroy_user_session_path, :method=>:delete
+      - else
+        / CONNECT
+        = link_to 'Sign in', new_user_session_path
