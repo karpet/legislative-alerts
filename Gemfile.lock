@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/legalerts/ruby-openstates.git
-  revision: b5c527ab2ff9cc1a2016286de998f97f147678a7
+  revision: 9c427b8202e82a1c423e4dee737276f0196e5759
   branch: find-bill-by-os-id
   specs:
     openstates (0.1.0)
