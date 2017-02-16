@@ -46,7 +46,7 @@ class Alert < ApplicationRecord
   private
 
   def os_bill
-    @_os_bill ||= OpenStates::Bill.find_by_os_id(parsed_query[:os_bill_id])
+    @_os_bill ||= OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
   end
 
   def check_bill
