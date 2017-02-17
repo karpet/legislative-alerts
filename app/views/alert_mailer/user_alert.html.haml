@@ -6,12 +6,28 @@
 
     %p
       You requested an email message every time
-      = @alert.name
-      showed signs of life.
-
-    %p
-      As you requested:
       = link_to @alert.name, @alert.public_url
+      shows signs of life.
+
+    %h3 Summary
 
     %p
-      %strong Please do not reply to this message.
+      = @alert.description
+    %p
+      State:
+      = @alert.os_bill.state.upcase
+      %br
+      Session:
+      = @alert.os_bill.session
+
+    %h3 Lastest activity
+
+    %p
+      = @alert.os_bill.actions.last.date
+      %br
+      = @alert.os_bill.actions.last.action
+
+    %hr
+
+    %p
+      %strong Automatic message -- please do not reply.

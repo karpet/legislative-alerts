@@ -1,0 +1,41 @@
+.container
+  .row
+
+    %h2
+      = @bill.bill_id
+
+    %h3
+      = @bill.title
+
+    %p
+      State:
+      = @bill.state.upcase
+      %br
+      Session:
+      = @bill.session
+      %br
+      Sponsors:
+      = @bill.sponsors.map(&:name).join(', ')
+
+    %h4 Activity
+
+    .activity
+      - @bill.actions.reverse.each do |action|
+        %p
+          = action.date
+          %br
+          = action.action
+
+    %h4 Bill text
+
+    .versions
+      - @bill.versions.each do |version|
+        %p.version
+          = link_to version.name, version.url, target: '_blank'
+
+    %hr
+
+    %p.os-link
+      %span.glyphicon.glyphicon-new-window
+      = link_to 'View on OpenStates.org', @bill.os_url, target: '_blank'
+

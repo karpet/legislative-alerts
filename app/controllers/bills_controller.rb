@@ -1,6 +1,10 @@
 class BillsController < ApplicationController
   before_action :authenticate_user!
 
+  def show
+    @bill = OpenStates::Bill.find_by_openstates_id(bill_id)
+  end
+
   def follow
     find_or_create_alert
     render json: @alert, status: 201

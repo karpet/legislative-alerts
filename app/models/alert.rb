@@ -35,18 +35,27 @@ class Alert < ApplicationRecord
     send method_name
   end
 
-  def public_url
+  def os_url
     os_bill.os_url + '#actions'
+  end
+
+  def public_url
+    method_name = "#{alert_type}_public_url"
+    send method_name
   end
 
   def mark_as_sent
     update_columns(last_sent_at: Time.zone.now)
   end
 
-  private
-
   def os_bill
     @_os_bill ||= OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
+  end
+
+  private
+
+  def bill_public_url
+    "#{Rails.application.routes.url_helpers.root_url}bills/#{parsed_query[:os_bill_id]}"
   end
 
   def check_bill
