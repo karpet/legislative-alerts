@@ -26,9 +26,18 @@
           .panel-body
             - resource_class.omniauth_providers.each do |provider|
               - if resource.identities.where( :provider => provider ).first
-                %p= link_to "Reconnect with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: "btn btn-default"
+                %p
+                  = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do
+                    %span{class: "fa fa-#{provider_title(provider).downcase} sign-in-icon"}
+                    Reconnect with
+                    = provider_title(provider)
+
               - else
-                %p= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: "btn btn-default"
+                %p
+                  = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do
+                    %span{class: "fa fa-#{provider_title(provider).downcase} sign-in-icon"}
+                    Sign in with
+                    = provider_title(provider)
 
     .profile.sidebar
       = panel title: "Cancel my Account", context: :danger do

@@ -18,4 +18,9 @@ module ApplicationHelper
   def page_title
     @title || controller_name.gsub( /Controller/, "" ).humanize
   end
+
+  def provider_title(provider)
+    return 'Google' if provider.to_s == 'google_oauth2'
+    return provider.to_s.titleize
+  end
 end
