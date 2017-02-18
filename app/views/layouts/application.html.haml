@@ -14,3 +14,12 @@
 
     -# Javascript at the bottom for fast page loading
     = render 'javascripts'
+
+    :javascript
+      $(function() {
+        window.setTimeout(function() {
+          $("#flash").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+          });
+        }, 3000);
+      });

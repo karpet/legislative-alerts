@@ -19,3 +19,5 @@
       .buttons
         = f.button :submit, 'Search', class: "btn-primary"
         = link_to 'Cancel', search_path, class: 'btn btn-secondary'
+        - if @query.present?
+          = link_to 'Save search as alert'
