@@ -67,6 +67,10 @@ class Alert < ApplicationRecord
     @_os_bill ||= OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
   end
 
+  def os_results
+    @_os_results ||= OpenStates::Bill.where(parsed_query)
+  end
+
   private
 
   def bill_public_url
@@ -94,6 +98,13 @@ class Alert < ApplicationRecord
   end
 
   def check_search
+    if results_have_changed?(query)
+      return update_as_run(os_checksum(os_results))
+    end
+  end
+
+  def results_have_changed?(query)
+    false # TODO
   end
 
   def update_as_run(checksum)
