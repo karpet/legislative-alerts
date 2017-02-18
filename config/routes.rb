@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/search' => 'search#index'
   get '/search/:id' => 'search#show'
+  post '/search/follow' => 'search#follow'
+  post '/search/unfollow' => 'search#unfollow'
 
   get '/bills/:id' => 'bills#show'
   post '/bills/:id/follow' => 'bills#follow'

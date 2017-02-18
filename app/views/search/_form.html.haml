@@ -1,6 +1,6 @@
 = panel title: 'Bill Search', context: :primary do
   = simple_form_for(:search, url: search_path,
-      html: { method: 'get', class: 'form-horizontal' },
+      html: { id: 'search-form', method: 'get', class: 'form-horizontal' },
       wrapper: :horizontal_form ) do |f|
 
     .panel-body
@@ -18,6 +18,16 @@
     .panel-footer
       .buttons
         = f.button :submit, 'Search', class: "btn-primary"
-        = link_to 'Cancel', search_path, class: 'btn btn-secondary'
-        - if @query.present?
-          = link_to 'Save search as alert'
+        = link_to 'Cancel', search_path, class: 'btn btn-default'
+        %span.pull-right
+          - if @query.present?
+            - if current_user.following?(@query)
+              %button#search-as-alert.btn.btn-success.following{onclick: 'return false'} Following search
+            - else
+              %button#search-as-alert.btn.btn-default.follow{onclick: 'return false'} Save as alert
+
+- content_for :javascripts do
+  :javascript
+    $('#search-as-alert').each(function(idx) {
+      LegAlerts.handleFollows($(this));
+    });

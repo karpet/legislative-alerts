@@ -114,11 +114,24 @@ class User < ApplicationRecord
     @google_oauth2_client ||= GoogleAppsClient.client( google_oauth2 )
   end
 
-  def following?(bill)
+  def following?(search_or_bill)
+    if search_or_bill.is_a? Hash
+      following_search?(search_or_bill)
+    else
+      following_bill?(search_or_bill)
+    end
+  end
+
+  def following_bill?(bill)
     alerts.select do |alert|
       alert.query =~ /#{bill.bill_id}/ || 
         alert.query =~ /#{bill.id}/
     end.any?
+  end
+
+  def following_search?(query)
+    pruned_query = query.slice(:q, :state).reject { |k,v| v.blank? }
+    alerts.select { |alert| alert.has_query? pruned_query }.any?
   end
 
   def find_alert_for_bill(bill_id)
@@ -134,6 +147,21 @@ class User < ApplicationRecord
       description: bill_params[:billDescription],
       alert_type: :bill,
       last_run_at: Time.zone.now,
+    )
+  end
+
+  def find_alert_for_query(query)
+    pruned_query = query.slice(:q, :state).reject { |k,v| v.blank? }
+    alerts.find { |alert| alert.has_query? pruned_query }
+  end
+
+  def create_alert_for_query(query)
+    alerts.create(
+      query: query.to_json,
+      name: Alert.humanize_query(query),
+      description: 'saved search',
+      alert_type: :search,
+      last_run_at: Time.zone.now
     )
   end
 

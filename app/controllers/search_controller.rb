@@ -2,8 +2,8 @@ class SearchController < ApplicationController
   include FormHelper
 
   def index
-    Rails.logger.debug("query:#{query.inspect}")
-    return unless text_query.present?
+    return unless query.present?
+    return unless query?
 
     @bills = OpenStates::Bill.where(query)
   end
@@ -14,7 +14,27 @@ class SearchController < ApplicationController
     render :index
   end
 
+  def follow
+    find_or_create_alert
+    render json: @alert, status: 201
+  end
+
+  def unfollow
+    find_and_delete_alert
+    render json: @alert, status: 202
+  end
+
   private
+
+  def find_or_create_alert
+    @alert = current_user.find_alert_for_query(search_params)
+    @alert ||= current_user.create_alert_for_query(search_params)
+  end
+
+  def find_and_delete_alert
+    @alert = current_user.find_alert_for_query(search_params)
+    @alert.destroy! if @alert.present?
+  end
 
   def search_params
     return {} unless params[:search]
@@ -39,6 +59,10 @@ class SearchController < ApplicationController
 
   def query
     @query ||= build_query
+  end
+
+  def query?
+    text_query.present? || state_filter.present?
   end
 
   def build_query

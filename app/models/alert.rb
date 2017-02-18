@@ -5,6 +5,17 @@ class Alert < ApplicationRecord
 
   enum alert_type: { bill: 0, search: 1 }
 
+  def self.humanize_query(query)
+    clauses = []
+    query.each do |k, v|
+      next unless v.present?
+      label = k == 'q' ? '' : k
+      op = k == 'q' ? '' : ':'
+      clauses << "#{label}#{op}#{v}"
+    end
+    clauses.join(' AND ')
+  end
+
   def to_param
     uuid
   end
@@ -15,6 +26,10 @@ class Alert < ApplicationRecord
 
   def pretty_query
     query
+  end
+
+  def has_query?(possible_query)
+    parsed_query.reject { |k,v| v.blank? }.to_json == possible_query.to_json
   end
 
   def parsed_query
@@ -56,6 +71,10 @@ class Alert < ApplicationRecord
 
   def bill_public_url
     "#{Rails.application.routes.url_helpers.root_url}bills/#{parsed_query[:os_bill_id]}"
+  end
+
+  def search_public_url
+    "#{Rails.application.routes.url_helpers.root_url}search/?#{parsed_query.to_query(:search)}"
   end
 
   def check_bill

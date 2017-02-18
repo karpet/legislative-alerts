@@ -1,5 +1,18 @@
 LegAlerts = {
-  unfollow: function(btn) {
+  searchFormParams: function() {
+    var form = $('#search-form');
+    var params = form.serializeArray();
+    var query = {};
+    $.each(params, function(idx, param) {
+      var matches = param.name.match(/search\[(.+)\]/);
+      if (!matches) return;
+      query[matches[1]] = param.value;
+    });
+    return query;
+  },
+
+  unfollowBill: function(btn) {
+    btn.text('Follow');
     var bill_id = btn.data('billId');
     var url = '/bills/'+bill_id+'/unfollow';
     $.post(url, btn.data(), function(rsp) {
@@ -11,7 +24,29 @@ LegAlerts = {
     });
   },
 
-  follow: function(btn) {
+  unfollowSearch: function(btn) {
+    btn.text('Save search as alert');
+    var query = LegAlerts.searchFormParams();
+    var url = '/search/unfollow';
+    $.post(url, { search: query }, function(rsp) {
+    })
+    .fail(function() {
+      btn.text('Save as alert');
+      LegAlerts.toggleFollow(btn);
+    });
+  },
+
+  unfollow: function(btn) {
+    if (btn.attr('id') == 'search-as-alert') {
+      LegAlerts.unfollowSearch(btn);
+    }
+    else {
+      LegAlerts.unfollowBill(btn);
+    }
+  },
+
+  followBill: function(btn) {
+    btn.text('Following');
     var bill_id = btn.data('billId');
     var url = '/bills/'+bill_id+'/follow';
     $.post(url, btn.data(), function(rsp) {
@@ -21,6 +56,27 @@ LegAlerts = {
       btn.text('Follow');
       LegAlerts.toggleFollow(btn);
     });
+  },
+
+  followSearch: function(btn) {
+    btn.text('Following search');
+    var query = LegAlerts.searchFormParams();
+    var url = '/search/follow';
+    $.post(url, { search: query }, function(rsp) {
+    })
+    .fail(function() {
+      btn.text('Save as alert');
+      LegAlerts.toggleFollow(btn);
+    });
+  },
+
+  follow: function(btn) {
+    if (btn.attr('id') == 'search-as-alert') {
+      LegAlerts.followSearch(btn);
+    }
+    else {
+      LegAlerts.followBill(btn);
+    }
   },
 
   toggleFollow: function(btn) {
@@ -33,11 +89,9 @@ LegAlerts = {
   handleFollows: function(btn) {
     btn.click(function() {
       if (btn.hasClass('following')) {
-        btn.text('Follow');
         LegAlerts.unfollow(btn);
       }
       else {
-        btn.text('Following');
         LegAlerts.follow(btn);
       }
       LegAlerts.toggleFollow(btn);
