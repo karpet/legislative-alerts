@@ -69,8 +69,14 @@
         %h1 Get in touch
         %ul.list-group
           %li.list-group-item
-            = link_to 'Email', 'mailto:info@legalerts.us'
+            = link_to 'mailto:info@legalerts.us' do
+              %span{class: 'fa fa-envelope-o'}
+              Email
           %li.list-group-item
-            = link_to 'GitHub', 'https://github.com/legalerts/'
+            = link_to 'https://github.com/legalerts/' do
+              %span{class: 'fa fa-github'}
+              GitHub
           %li.list-group-item
-            = link_to 'Twitter', 'https://twitter.com/legalerts'
+            = link_to 'https://twitter.com/legalerts' do
+              %span{class: 'fa fa-twitter'}
+              Twitter
