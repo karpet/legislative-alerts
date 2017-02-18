@@ -22,7 +22,10 @@ test: &test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: legalerts
+  port: 5432
 
 cucumber:
   <<: *test
