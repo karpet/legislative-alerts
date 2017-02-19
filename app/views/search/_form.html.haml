@@ -20,7 +20,7 @@
         = f.button :submit, 'Search', class: "btn-primary"
         = link_to 'Cancel', search_path, class: 'btn btn-default'
         %span.pull-right
-          - if @query.present?
+          - if @query.present? && user_signed_in?
             - if current_user.following?(@query)
               %button#search-as-alert.btn.btn-success.following{onclick: 'return false'} Following search
             - else
