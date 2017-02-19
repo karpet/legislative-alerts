@@ -27,12 +27,12 @@ class SearchController < ApplicationController
   private
 
   def find_or_create_alert
-    @alert = current_user.find_alert_for_query(search_params)
-    @alert ||= current_user.create_alert_for_query(search_params)
+    @alert = current_user.find_alert_for_search(search_params)
+    @alert ||= current_user.create_alert_for_search(search_params)
   end
 
   def find_and_delete_alert
-    @alert = current_user.find_alert_for_query(search_params)
+    @alert = current_user.find_alert_for_search(search_params)
     @alert.destroy! if @alert.present?
   end
 

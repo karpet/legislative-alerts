@@ -130,7 +130,7 @@ class User < ApplicationRecord
   end
 
   def following_search?(query)
-    pruned_query = query.slice(:q, :state).reject { |k,v| v.blank? }
+    pruned_query = Alert.prune_query(query)
     alerts.select { |alert| alert.has_query? pruned_query }.any?
   end
 
@@ -150,14 +150,14 @@ class User < ApplicationRecord
     )
   end
 
-  def find_alert_for_query(query)
-    pruned_query = query.slice(:q, :state).reject { |k,v| v.blank? }
+  def find_alert_for_search(query)
+    pruned_query = Alert.prune_query(query)
     alerts.find { |alert| alert.has_query? pruned_query }
   end
 
-  def create_alert_for_query(query)
+  def create_alert_for_search(query)
     alerts.create(
-      query: query.to_json,
+      query: Alert.prune_query(query).to_json,
       name: Alert.humanize_query(query),
       description: 'saved search',
       alert_type: :search,

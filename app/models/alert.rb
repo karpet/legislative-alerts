@@ -16,6 +16,10 @@ class Alert < ApplicationRecord
     clauses.join(' AND ')
   end
 
+  def self.prune_query(query)
+    query.slice(:q, :state).reject { |k,v| v.blank? }
+  end
+
   def to_param
     uuid
   end
@@ -29,7 +33,7 @@ class Alert < ApplicationRecord
   end
 
   def has_query?(possible_query)
-    parsed_query.reject { |k,v| v.blank? }.to_json == possible_query.to_json
+    self.class.prune_query(parsed_query).to_json == possible_query.to_json
   end
 
   def parsed_query
@@ -68,7 +72,7 @@ class Alert < ApplicationRecord
   end
 
   def os_results
-    @_os_results ||= OpenStates::Bill.where(parsed_query)
+    @_os_results ||= OpenStates::Bill.where(parsed_query.merge(per_page: 10))
   end
 
   private
@@ -94,7 +98,7 @@ class Alert < ApplicationRecord
   end
 
   def os_checksum(os_payload)
-    Digest::SHA256.digest os_payload.to_json
+    Digest::SHA256.hexdigest os_payload.to_json
   end
 
   def check_search
@@ -103,8 +107,8 @@ class Alert < ApplicationRecord
     end
   end
 
-  def results_have_changed?(query)
-    false # TODO
+  def results_have_changed?(_query)
+    checksum != os_checksum(os_results)
   end
 
   def update_as_run(checksum)
