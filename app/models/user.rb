@@ -123,7 +123,7 @@ class User < ApplicationRecord
   end
 
   def following_bill?(bill)
-    alerts.select do |alert|
+    alerts.bill.select do |alert|
       alert.query =~ /#{bill.bill_id}/ || 
         alert.query =~ /#{bill.id}/
     end.any?
@@ -131,11 +131,11 @@ class User < ApplicationRecord
 
   def following_search?(query)
     pruned_query = Alert.prune_query(query)
-    alerts.select { |alert| alert.has_query? pruned_query }.any?
+    alerts.search.select { |alert| alert.has_query? pruned_query }.any?
   end
 
   def find_alert_for_bill(bill_id)
-    alerts.find do |alert|
+    alerts.bill.find do |alert|
       alert.query == query_for_bill(bill_id)
     end
   end
@@ -152,7 +152,7 @@ class User < ApplicationRecord
 
   def find_alert_for_search(query)
     pruned_query = Alert.prune_query(query)
-    alerts.find { |alert| alert.has_query? pruned_query }
+    alerts.search.find { |alert| alert.has_query? pruned_query }
   end
 
   def create_alert_for_search(query)
