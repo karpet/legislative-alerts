@@ -1,4 +1,8 @@
 class Alert::Search < Alert
+  def self.model_name
+    Alert.model_name
+  end
+
   def check
     if results_have_changed?(query)
       return update_as_run(os_checksum(os_results))

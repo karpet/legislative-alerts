@@ -1,4 +1,8 @@
 class Alert::Bill < Alert
+  def self.model_name
+    Alert.model_name
+  end
+
   def os_bill
     @_os_bill ||= OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
   end
