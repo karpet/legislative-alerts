@@ -4,4 +4,9 @@ test:
 run:
 	foreman start
 
-.PHONY: test run
+deploy:
+	git pull
+	rake assets:precompile
+	touch tmp/restart.txt
+
+.PHONY: test run deploy
