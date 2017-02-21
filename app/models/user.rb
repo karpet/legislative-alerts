@@ -18,8 +18,12 @@ class User < ApplicationRecord
 
   enum role: [:user, :admin]
 
-  devise :omniauthable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
+  devise :omniauthable,
+         :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
          omniauth_providers: [:github, :twitter, :google_oauth2]
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
@@ -40,7 +44,7 @@ class User < ApplicationRecord
       # If no verified email was provided we assign a temporary email and ask the
       # user to verify it on the next step via UsersController.finish_signup
       email = auth.info.email
-      user = User.where(:email => email).first if email
+      user = User.where(email: email).first if email
 
       # Create the user if it's a new registration
       if user.nil?
@@ -54,8 +58,17 @@ class User < ApplicationRecord
 
     # Associate the identity with the user if needed
     if identity.user != user
+      old_user_id = identity.user_id
       identity.user = user
       identity.save!
+
+      # clean up the old user so it is not orphaned.
+      if old_user_id
+        old_user = User.find(old_user_id)
+        if !old_user.identities.any?
+          old_user.destroy
+        end
+      end
     end
     user
   end
@@ -163,6 +176,10 @@ class User < ApplicationRecord
       alert_type: :search,
       last_run_at: Time.zone.now
     )
+  end
+
+  def avatar_url
+    identities.select { |id| id.image.present? }.first.image
   end
 
   private

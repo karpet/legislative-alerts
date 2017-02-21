@@ -7,3 +7,5 @@ notifications:
 before_script:
   - bin/rails db:migrate --trace
 cache: bundler
+addons:
+  postgresql: 9.2

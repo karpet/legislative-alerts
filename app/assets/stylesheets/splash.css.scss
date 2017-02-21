@@ -14,7 +14,7 @@ $navbar-default-link-active-bg: lighten( $brand-primary, 30% );
 
 $body-bg: white;
 
-$slideup-navbar-height: 150px;
+$slideup-navbar-height: 80px;
 
 $border-radius-base: 2px;
 $border-radius-large: 2px;
@@ -143,4 +143,15 @@ body.splash {
     background: $brand-primary;
     color: white;
   }
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow:hidden;
+}
+
+header.slideup.affix-top li .avatar-link {
+  padding-top: (($slideup-navbar-height - 40)/2);
 }

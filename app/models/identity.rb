@@ -12,12 +12,8 @@ class Identity < ActiveRecord::Base
       identity.secrettoken = auth.credentials.secret
     end
     if auth.info
-      identity.name = auth.info.name
       identity.email = auth.info.email
-      identity.nickname = auth.info.nickname
       identity.image = auth.info.image
-      identity.phone = auth.info.phone
-      identity.urls = (auth.info.urls || "").to_json
     end
     identity.save
     identity

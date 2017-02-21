@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215023800) do
+ActiveRecord::Schema.define(version: 20170221032627) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "alerts", force: :cascade do |t|
     t.string   "uuid"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170215023800) do
     t.string   "checksum"
     t.integer  "alert_type",   default: 0
     t.datetime "last_sent_at"
-    t.index ["uuid"], name: "index_alerts_on_uuid", unique: true
+    t.index ["uuid"], name: "index_alerts_on_uuid", unique: true, using: :btree
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170215023800) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
   create_table "identities", force: :cascade do |t|
@@ -47,17 +50,13 @@ ActiveRecord::Schema.define(version: 20170215023800) do
     t.string   "provider"
     t.string   "accesstoken"
     t.string   "uid"
-    t.string   "name"
     t.string   "email"
-    t.string   "nickname"
     t.string   "image"
-    t.string   "phone"
-    t.string   "urls"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "secrettoken"
     t.string   "refreshtoken"
-    t.index ["user_id"], name: "index_identities_on_user_id"
+    t.index ["user_id"], name: "index_identities_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,8 +73,8 @@ ActiveRecord::Schema.define(version: 20170215023800) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "role"
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

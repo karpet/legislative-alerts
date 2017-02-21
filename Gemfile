@@ -29,6 +29,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-twitter'
 gem 'openstates'
+gem 'pg'
 gem 'premailer-rails'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.1'
@@ -44,7 +45,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec', '~> 3.5.0'
   gem 'rspec-rails', '~> 3.5.0'
   gem 'factory_girl_rails'
@@ -65,6 +65,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'lograge'
 end
