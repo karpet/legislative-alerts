@@ -154,11 +154,11 @@ class User < ApplicationRecord
   end
 
   def create_alert_for_bill(bill_params)
-    alerts.create(
+    Alert::Bill.create(
+      user: self,
       query: query_for_bill(bill_params[:billId]),
       name: bill_params[:billName],
       description: bill_params[:billDescription],
-      alert_type: :bill,
       last_run_at: Time.zone.now,
     )
   end
@@ -169,11 +169,11 @@ class User < ApplicationRecord
   end
 
   def create_alert_for_search(query)
-    alerts.create(
+    Alert::Search.create(
+      user: self,
       query: Alert.prune_query(query).to_json,
       name: Alert.humanize_query(query),
       description: 'saved search',
-      alert_type: :search,
       last_run_at: Time.zone.now
     )
   end

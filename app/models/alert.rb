@@ -1,16 +1,12 @@
 class Alert < ApplicationRecord
   self.inheritance_column = :alert_type
 
-  def self.find_sti_class(enummer)
-    enum_sym = alert_types.find { |k, v| v == enummer }.first
-    "Alert::#{enum_sym.classify}".constantize
-  end
-
   belongs_to :user
 
   before_create :generate_uuid
 
-  enum alert_type: { bill: 0, search: 1 }
+  scope :search, -> { where(alert_type: 'Alert::Search') }
+  scope :bill, -> { where(alert_type: 'Alert::Bill') }
 
   def self.humanize_query(query)
     clauses = []

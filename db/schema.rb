@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221032627) do
+ActiveRecord::Schema.define(version: 20170221041021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 20170221032627) do
     t.string   "description"
     t.text     "query"
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.datetime "last_run_at"
     t.string   "checksum"
-    t.integer  "alert_type",   default: 0
     t.datetime "last_sent_at"
+    t.string   "alert_type"
     t.index ["uuid"], name: "index_alerts_on_uuid", unique: true, using: :btree
   end
 
