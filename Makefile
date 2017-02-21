@@ -6,6 +6,7 @@ run:
 
 deploy:
 	git pull
+	rake db:migrate
 	rake assets:precompile
 	touch tmp/restart.txt
 
