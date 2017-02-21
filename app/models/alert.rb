@@ -7,6 +7,8 @@ class Alert < ApplicationRecord
 
   scope :search, -> { where(alert_type: 'Alert::Search') }
   scope :bill, -> { where(alert_type: 'Alert::Bill') }
+  scope :recent, -> { order(created_at: 'desc') }
+  scope :by_name, -> { order('LOWER(name)') }
 
   def self.humanize_query(query)
     clauses = []
