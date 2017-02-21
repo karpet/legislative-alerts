@@ -155,3 +155,13 @@ body.splash {
 header.slideup.affix-top li .avatar-link {
   padding-top: (($slideup-navbar-height - 40)/2);
 }
+
+@media (max-width: $screen-xs-max) {
+  .avatar {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  header.slideup.affix-top li .avatar-link {
+    padding-top: 2px;
+  }
+}

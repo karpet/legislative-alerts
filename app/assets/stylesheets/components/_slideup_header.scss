@@ -47,5 +47,13 @@ header.slideup {
       padding-bottom: (($slideup-navbar-height - 20)/2);
       font-size: 12px;
     }
+
+    @media (max-width: $screen-xs-max) {
+      li > a {
+        background-color: #fff;
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+    }
   }
 }
