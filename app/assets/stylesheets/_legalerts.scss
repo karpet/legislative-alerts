@@ -2,6 +2,18 @@
   margin-left: 1em;
 }
 
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow:hidden;
+}
+
+.navbar-nav li .avatar-link {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
 .search {
   .result {
     padding: 1em;

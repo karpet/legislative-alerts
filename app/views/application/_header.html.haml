@@ -8,7 +8,9 @@
       = link_to 'Alerts', alerts_path
       = link_to 'Search', search_path
       - if user_signed_in?
-        = link_to 'Profile', edit_user_registration_path
+        = link_to edit_user_registration_path, class: 'avatar-link' do
+          .avatar
+            = image_tag current_user.avatar_url, alt: 'Profile', width: '50px'
         = link_to 'Sign out', destroy_user_session_path, :method=>:delete
       - else
         / CONNECT
