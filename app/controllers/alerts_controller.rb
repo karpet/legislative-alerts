@@ -27,7 +27,7 @@ class AlertsController < ApplicationController
   end
 
   def destroy
-    alert.destroy
+    Alert.delete(alert.id) # avoid the generated where(alert_type: ...)
     redirect_to alerts_path
   end
 
