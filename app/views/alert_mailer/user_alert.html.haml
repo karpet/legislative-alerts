@@ -13,19 +13,21 @@
 
     %p
       = @alert.description
-    %p
-      State:
-      = @alert.os_bill.state.upcase
-      %br
-      Session:
-      = @alert.os_bill.session
 
-    %h3 Lastest activity
+    - if @alert.is_a? Alert::Bill
+      %p
+        State:
+        = @alert.os_bill.state.upcase
+        %br
+        Session:
+        = @alert.os_bill.session
 
-    %p
-      = @alert.os_bill.actions.last.date
-      %br
-      = @alert.os_bill.actions.last.action
+      %h3 Lastest activity
+
+      %p
+        = @alert.os_bill.actions.last.date
+        %br
+        = @alert.os_bill.actions.last.action
 
     %hr
 
