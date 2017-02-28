@@ -1,0 +1,15 @@
+%h3 Latest Activity
+
+- @alert.os_results.each do |bill|
+  %p
+    = bill.bill_id
+    %br
+    = bill.title
+
+  %p
+    State:
+    = bill.state.upcase
+    %br
+    Session:
+    = bill.session
+   

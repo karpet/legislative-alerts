@@ -1,0 +1,14 @@
+%p  
+  State:
+  = @alert.os_bill.state.upcase
+  %br 
+  Session:
+  = @alert.os_bill.session
+
+%h3 Lastest activity
+
+%p  
+  = @alert.os_bill.actions.last.date
+  %br 
+  = @alert.os_bill.actions.last.action
+
