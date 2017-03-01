@@ -1,9 +1,10 @@
 %h3 Latest Activity
 
 - @alert.os_results.each do |bill|
-  %p
+  %h4
     = bill.bill_id
-    %br
+
+  %p
     = bill.title
 
   %p
@@ -12,4 +13,10 @@
     %br
     Session:
     = bill.session
-   
+    %br
+    Last Action:
+    = bill.actions.first.action
+    %br
+    = bill.actions.first.date
+
+  %hr

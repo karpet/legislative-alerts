@@ -1,4 +1,6 @@
 class Alert::Search < Alert
+  OS_FIELDS = 'bill_id,state,session,title,actions'.freeze
+
   def self.model_name
     Alert.model_name
   end
@@ -14,7 +16,7 @@ class Alert::Search < Alert
   end
 
   def os_results
-    @_os_results ||= OpenStates::Bill.where(parsed_query.merge(per_page: 10))
+    @_os_results ||= OpenStates::Bill.where(parsed_query.merge(per_page: 10, fields: OS_FIELDS))
   end
 
   def url_query
