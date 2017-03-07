@@ -28,6 +28,7 @@ class AlertsController < ApplicationController
 
   def destroy
     Alert.delete(alert.id) # avoid the generated where(alert_type: ...)
+    flash[:notice] = "Deleted alert #{alert.title}"
     redirect_to alerts_path
   end
 
