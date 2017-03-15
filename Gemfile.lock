@@ -416,6 +416,7 @@ DEPENDENCIES
   bootstrap-sass
   cancancan
   capybara
+  daemons
   database_cleaner
   delayed_job_active_record
   devise (~> 4.2)
