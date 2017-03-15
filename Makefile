@@ -5,7 +5,7 @@ run:
 	foreman start
 
 runprod:
-	foreman -f Profile.production start
+	foreman start -f Procfile.production
 
 deploy:
 	git pull
