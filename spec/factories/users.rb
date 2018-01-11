@@ -1,10 +1,8 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:email) { |n| Faker::Internet.safe_email 'User %d' % n }
 end
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     email
     password '12345678'
