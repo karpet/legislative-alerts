@@ -9,6 +9,7 @@ runprod:
 
 deploy:
 	git pull
+	bundle install
 	rake db:migrate
 	rake assets:precompile
 	rake restart
