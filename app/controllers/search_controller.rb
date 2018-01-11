@@ -24,6 +24,12 @@ class SearchController < ApplicationController
     render json: @alert, status: 202
   end
 
+  def bill
+    bill_id = params.require(:id)
+    @bill = OpenStates::Bill.find_by_openstates_id(bill_id)
+    render json: @bill
+  end
+
   private
 
   def find_or_create_alert
