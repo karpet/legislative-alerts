@@ -11,7 +11,7 @@ deploy:
 	git pull
 	rake db:migrate
 	rake assets:precompile
-	touch tmp/restart.txt
+	rake restart
 	bundle exec bin/delayed_job restart
 
 .PHONY: test run deploy runprod
