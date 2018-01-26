@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post '/search/unfollow' => 'search#unfollow'
   get '/search/bill/:id', to: 'search#bill', as: :search_bill
 
-  get '/bills/:id' => 'bills#show'
+  get '/bills/:id', to: 'bills#show', as: :bills
   post '/bills/:id/follow' => 'bills#follow'
   post '/bills/:id/unfollow' => 'bills#unfollow'
 

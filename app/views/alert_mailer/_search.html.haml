@@ -2,7 +2,7 @@
 
 - @alert.os_results.each do |bill|
   %h4
-    = bill.bill_id
+    = link_to bill.bill_id, bills_url(bill.id)
 
   %p
     = bill.title
