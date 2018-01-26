@@ -1,5 +1,5 @@
 class BillsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:follow, :unfollow]
 
   def show
     @bill = OpenStates::Bill.find_by_openstates_id(bill_id)

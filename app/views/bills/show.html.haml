@@ -1,5 +1,11 @@
 .container
   .row
+    .actions
+      - if current_user
+        = render partial: 'search/actions', locals: { bill: @bill }
+      - else
+        .sign-in-no-action
+          = link_to 'Sign in to follow this bill', new_user_session_path, class: 'btn btn-default'
 
     %h2
       = @bill.bill_id
@@ -39,3 +45,8 @@
       %span.glyphicon.glyphicon-new-window
       = link_to 'View on OpenStates.org', @bill.os_url, target: '_blank'
 
+- content_for :javascripts do
+  :javascript
+    $('.actions button').each(function(idx) {
+      LegAlerts.handleFollows($(this));
+    });
