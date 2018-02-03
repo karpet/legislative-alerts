@@ -1,6 +1,7 @@
 %h3 Latest Activity
 
 - @alert.os_results.each do |bill|
+  - recent_action = bill.actions.last
   %h4
     = link_to bill.bill_id, bills_url(bill.id)
 
@@ -15,8 +16,8 @@
     = bill.session
     %br
     Last Action:
-    = bill.actions.last.action
+    = recent_action['action']
     %br
-    = bill.actions.last.date
+    = recent_action['date']
 
   %hr
