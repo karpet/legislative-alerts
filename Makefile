@@ -15,4 +15,8 @@ deploy:
 	rake restart
 	bundle exec bin/delayed_job restart
 
+restart:
+	rake restart
+	bundle exec bin/delayed_job restart
+
 .PHONY: test run deploy runprod
