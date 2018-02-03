@@ -8,7 +8,8 @@ class AlertChecker
 
   def run
     alerts.each do |alert|
-      AlertMailer.user_alert(alert).deliver_later
+      m = AlertMailer.user_alert(alert).deliver_later
+      Delayed::Worker.logger.debug('deliver_later: ' + m.serialize.to_s)
       alert.mark_as_sent
     end
   end
