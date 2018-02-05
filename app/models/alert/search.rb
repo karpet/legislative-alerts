@@ -23,9 +23,15 @@ class Alert::Search < Alert
     '?' + parsed_query.to_query(:search)
   end
 
+  def recent_actions
+    os_results.map do |bill|
+      bill.actions.last.slice('action', 'date')
+    end
+  end
+
   private
 
   def results_have_changed?(_query)
-    checksum != os_checksum(os_results)
+    checksum != os_checksum(recent_actions)
   end
 end
