@@ -104,7 +104,7 @@ LegAlerts = {
     modal.on('hide.bs.modal', function() {
       modal.find('.ajax-loader').show();
     });
-    modal.find('.modal-title').text(bill.bill_id);
+    modal.find('.modal-title').html($('<a href="/bills/'+bill.id+'">'+bill.bill_id+'</a>'));
     var actions_html = [];
     $.each(bill.actions.reverse(), function(idx) {
       var action = this;
