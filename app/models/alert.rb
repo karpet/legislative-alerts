@@ -72,6 +72,7 @@ class Alert < ApplicationRecord
   private
 
   def update_as_run(sum)
+    self.checksum = sum
     update_columns(last_run_at: Time.zone.now, checksum: sum)
   end
 end
