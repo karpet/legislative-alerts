@@ -7,12 +7,12 @@ class Alert::Search < Alert
 
   def check
     if results_have_changed?(query)
-      return update_as_run(os_checksum(os_results))
+      return update_as_run(os_checksum(recent_actions))
     end
   end
 
-  def public_url
-    "#{Rails.application.routes.url_helpers.root_url}search/#{url_query}"
+  def url_name
+    'search/'
   end
 
   def os_results
