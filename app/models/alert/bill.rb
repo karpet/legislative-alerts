@@ -3,12 +3,12 @@ class Alert::Bill < Alert
     Alert.model_name
   end
 
-  def os_bill
-    @_os_bill ||= OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
+  def url_name
+    'bills'
   end
 
-  def public_url
-    "#{Rails.application.routes.url_helpers.root_url}bills#{url_query}"
+  def os_bill
+    @_os_bill ||= OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
   end
 
   def os_url

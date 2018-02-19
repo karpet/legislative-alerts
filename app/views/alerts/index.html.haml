@@ -9,6 +9,7 @@
       %tr
         %th Name
         %th Description
+        %th Checksum
         %th Last sent
 
       - current_user.alerts.by_name.each do |alert|
@@ -17,6 +18,8 @@
             = link_to alert.name, alert
           %td.description
             = alert.description
+          %td.checksum
+            = alert.checksum_short
           %td.last_sent
             = alert.last_sent_at
 

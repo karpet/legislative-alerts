@@ -25,6 +25,18 @@ class Alert < ApplicationRecord
     query.slice(:q, :state).reject { |k,v| v.blank? }
   end
 
+  def url_name
+    'alerts/'
+  end
+
+  def public_url
+    "#{Rails.application.routes.url_helpers.root_url}#{url_name}#{url_query}"
+  end
+
+  def url_query
+    uuid
+  end
+
   def to_param
     uuid
   end
@@ -49,13 +61,17 @@ class Alert < ApplicationRecord
     update_columns(last_sent_at: Time.zone.now)
   end
 
-  private
-
   def os_checksum(os_payload)
     Digest::SHA256.hexdigest os_payload.to_json
   end
 
-  def update_as_run(checksum)
-    update_columns(last_run_at: Time.zone.now, checksum: checksum)
+  def checksum_short
+    (checksum || 'nocheck')[0..7]
+  end
+
+  private
+
+  def update_as_run(sum)
+    update_columns(last_run_at: Time.zone.now, checksum: sum)
   end
 end
