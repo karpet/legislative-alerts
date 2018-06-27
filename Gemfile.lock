@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/legalerts/ruby-openstates.git
-  revision: 62b3ee19655b0be99d4a12036e9d0e00cc5f1e71
-  branch: quiet-hashie-warning
+  revision: 86bd3c3b3475201803d1f2e173214a1584fb03fd
+  branch: master
   specs:
     openstates (0.2.0)
       faraday_middleware
