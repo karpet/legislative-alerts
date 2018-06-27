@@ -2,7 +2,7 @@
 
 git pull && \
 bin/cron-bundle install && \
-bin/cron-bundle rake db:migrate && \
-bin/cron-bundle rake assets:precompile && \
-bin/cron-bundle rake restart && \
+bin/cron-bundle exec rake db:migrate && \
+bin/cron-bundle exec rake assets:precompile && \
+bin/cron-bundle exec rake restart && \
 bin/cron-bundle exec bin/delayed_job restart
