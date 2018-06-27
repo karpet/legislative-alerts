@@ -8,12 +8,7 @@ runprod:
 	foreman start -f Procfile.production
 
 deploy:
-	git pull
-	bundle install
-	rake db:migrate
-	rake assets:precompile
-	rake restart
-	bundle exec bin/delayed_job restart
+	ssh legalerts.us 'cd legislative-alerts && bin/deploy'
 
 restart:
 	rake restart
