@@ -8,7 +8,7 @@ runprod:
 	foreman start -f Procfile.production
 
 deploy:
-	ssh legalerts.us 'cd legislative-alerts && bin/deploy'
+	ssh legalerts@legalerts.us 'cd legislative-alerts && bin/deploy'
 
 restart:
 	rake restart

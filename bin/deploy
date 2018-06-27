@@ -1,8 +1,8 @@
 #!/bin/sh
 
 git pull && \
-bundle install && \
-rake db:migrate && \
-rake assets:precompile && \
-rake restart && \
-bundle exec bin/delayed_job restart
+bin/cron-bundle install && \
+bin/cron-bundle rake db:migrate && \
+bin/cron-bundle rake assets:precompile && \
+bin/cron-bundle rake restart && \
+bin/cron-bundle exec bin/delayed_job restart
