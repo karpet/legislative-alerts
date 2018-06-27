@@ -2,6 +2,7 @@
 
 git pull && \
 bin/cron-bundle install && \
+bin/cron-bundle exec dotenv && \
 bin/cron-bundle exec rake db:migrate && \
 bin/cron-bundle exec rake assets:precompile && \
 bin/cron-bundle exec rake restart && \
