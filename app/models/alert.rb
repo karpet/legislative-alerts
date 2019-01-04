@@ -1,6 +1,8 @@
 class Alert < ApplicationRecord
   self.inheritance_column = :alert_type
 
+  enum status: { active: 'active', archived: 'archived' }
+
   belongs_to :user
 
   before_create :generate_uuid

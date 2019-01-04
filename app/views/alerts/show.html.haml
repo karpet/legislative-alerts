@@ -6,6 +6,10 @@
         = link_to @alert.name.try(:html_safe), @alert.public_url
 
       %dl
+        %dt Status
+        %dd
+          = @alert.status
+
         %dt Description
         %dd
           = @alert.description.try(:html_safe)

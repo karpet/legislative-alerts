@@ -9,6 +9,7 @@
       %tr
         %th Name
         %th Description
+        %th Status
         %th Checksum
         %th Last sent
 
@@ -18,6 +19,8 @@
             = link_to alert.name, alert
           %td.description
             = alert.description
+          %td.status
+            = alert.status
           %td.checksum
             = alert.checksum_short
           %td.last_sent

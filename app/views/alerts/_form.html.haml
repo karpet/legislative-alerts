@@ -6,6 +6,7 @@
 
       .form-inputs
         = f.input :name, required: true, autofocus: true
+        = f.input :status, collection: Alert.statuses
         = f.input :description
         = f.input :query
         = f.input :alert_type, as: :hidden, input_html: { value: (@alert.alert_type || 'Alert::Search') }

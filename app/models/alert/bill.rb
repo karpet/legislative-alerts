@@ -8,7 +8,13 @@ class Alert::Bill < Alert
   end
 
   def os_bill
-    @_os_bill ||= OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
+    @_os_bill ||= begin
+      OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
+    rescue Faraday::ResourceNotFound => err
+      # if it no longer exists, deactivate the alert
+      update!(status: :archived)
+      false
+    end
   end
 
   def os_url

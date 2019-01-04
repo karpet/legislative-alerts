@@ -16,7 +16,7 @@ class AlertChecker
 
   def alerts
     to_send = []
-    Alert.where(user: user).where('last_run_at < ?', run_at).each do |alert|
+    Alert.active.where(user: user).where('last_run_at < ?', run_at).each do |alert|
       to_send << alert if alert.check
     end
     to_send
