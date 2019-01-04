@@ -14,10 +14,12 @@
     %p
       = @alert.description
 
-    - if @alert.is_a? Alert::Bill
+    - if @alert.is_a? Alert::Bill && @alert.os_bill
       = render 'bill'
     - elsif @alert.is_a? Alert::Search
       = render 'search'
+    - else
+      Your alert has been deactivated because the Bill cannot be found.
 
     %hr
 

@@ -34,6 +34,7 @@ class Alert::Bill < Alert
   end
 
   def bill_has_changed?(bill)
+    return unless bill
     DateTime.parse(bill.action_dates[:last]) > last_run_at
   end
 end

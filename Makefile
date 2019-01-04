@@ -1,6 +1,9 @@
 test:
 	bundle exec rspec
 
+alerts:
+	bundle exec rake alerts:check
+
 run:
 	foreman start
 
