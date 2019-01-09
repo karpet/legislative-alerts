@@ -24,7 +24,7 @@ class Alert::Search < Alert
   end
 
   def recent_actions
-    os_results.map do |bill|
+    os_results.select { |bill| bill.actions.any? }.map do |bill|
       bill.actions.last.slice('action', 'date')
     end
   end
