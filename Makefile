@@ -4,6 +4,12 @@ test:
 alerts:
 	bundle exec rake alerts:check
 
+db:
+	bundle exec rails dbconsole
+
+console:
+	bundle exec rails console
+
 run:
 	foreman start
 
@@ -17,4 +23,4 @@ restart:
 	rake restart
 	bundle exec bin/delayed_job restart
 
-.PHONY: test run deploy runprod
+.PHONY: test run deploy runprod restart console db alerts
