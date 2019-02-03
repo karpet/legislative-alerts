@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 ruby '2.3.3'
+#ruby '2.6.1'
 
 gem 'bh'
 gem 'bootstrap-sass'
@@ -14,6 +15,7 @@ gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'devise', '~> 4.2'
 gem 'dotenv-rails'
+gem 'erubi'
 gem 'gibbon'
 gem 'google-api-client', '0.9.28', require: ['google/apis/plus_v1']
 gem 'haml-rails'
@@ -33,7 +35,7 @@ gem 'openstates', git: 'https://github.com/legalerts/ruby-openstates.git', branc
 gem 'pg', '~> 0.21.0'
 gem 'premailer-rails'
 gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.0.1'
+gem 'rails'
 gem 'rails_12factor'
 gem 'responders', '~> 2.0'
 gem 'sass-rails', '~> 5.0'
@@ -56,7 +58,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'sinatra', '2.0.0.beta2'
+#  gem 'sinatra', '2.0.0.beta2'
   gem 'timecop'
 end
 
