@@ -15,6 +15,10 @@ class Alert::Search < Alert
     'search/'
   end
 
+  def os_bill
+    false
+  end
+
   def os_results
     @_os_results ||= OpenStates::Bill.where(parsed_query.merge(per_page: 10, fields: OS_FIELDS))
   end
