@@ -6,4 +6,12 @@ class AlertMailer < ApplicationMailer
       subject: "[LegAlerts] #{alert.name}"
     )
   end
+
+  def admin_alert(stats)
+    @stats = stats
+    mail(
+      to: 'admin@legalerts.us',
+      subject: '[LegAlerts] Daily report'
+    )
+  end
 end

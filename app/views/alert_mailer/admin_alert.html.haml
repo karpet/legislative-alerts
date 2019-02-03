@@ -1,0 +1,16 @@
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}
+
+  %body
+
+    %p
+      Daily LegAlerts alerts summary.
+
+    %p
+      Users:
+      = @stats[:users]
+
+      Mails sent:
+      = @stats[:sent]
+

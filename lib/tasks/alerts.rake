@@ -2,14 +2,20 @@ namespace :alerts do
 
   desc 'check for new activity and send emails'
   task check: :environment do
+    stats = { sent: 0, users: 0 }
     User.find_in_batches.with_index do |users, batch|
       User.transaction do
         users.each do |user|
           checker = AlertChecker.new(user: user)
-          checker.run
+          alerts_sent = checker.run
+          stats[:sent] += alerts_sent.length
+          if alerts_sent.length > 0
+            stats[:users] += 1
+          end
         end
       end
     end
+    AlertMailer.admin_alert(stats).deliver_now
   end
 
   desc 'report usage'

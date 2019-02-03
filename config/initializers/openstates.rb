@@ -11,8 +11,12 @@ module OpenStatesExtensions
       )
     end
 
+    def url_id
+      sprintf("%s/%s/%s", state, session, bill_id)
+    end
+
     def api_url
-      sprintf("https://openstates.org/api/v1/bills/%s/", id)
+      sprintf("https://openstates.org/api/v1/bills/%s/", url_id)
     end
 
     def desc

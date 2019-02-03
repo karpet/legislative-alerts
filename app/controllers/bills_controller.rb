@@ -2,7 +2,7 @@ class BillsController < ApplicationController
   before_action :authenticate_user!, only: [:follow, :unfollow]
 
   def show
-    @bill = OpenStates::Bill.find_by_openstates_id(bill_id)
+    @bill = bill_details
   end
 
   def follow
@@ -16,6 +16,12 @@ class BillsController < ApplicationController
   end
 
   private
+
+  def bill_details
+    state, session, bid = bill_id.split('/')
+    bid = bid.gsub(' ', '%20')
+    OpenStates::Bill.bill_details(state, session, bid)
+  end
 
   def find_or_create_alert
     @alert = current_user.find_alert_for_bill(bill_id)
