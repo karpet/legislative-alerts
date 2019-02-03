@@ -18,7 +18,7 @@ class BillsController < ApplicationController
   private
 
   def bill_details
-    state, session, bid = bill_id.split('/')
+    state, session, bid = Base64.urlsafe_decode64(bill_id).split('/')
     bid = bid.gsub(' ', '%20')
     OpenStates::Bill.bill_details(state, session, bid)
   end

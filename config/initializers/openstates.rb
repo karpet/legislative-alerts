@@ -12,7 +12,7 @@ module OpenStatesExtensions
     end
 
     def url_id
-      sprintf("%s/%s/%s", state, session, bill_id)
+      Base64.urlsafe_encode64(sprintf("%s/%s/%s", state, session, bill_id))
     end
 
     def api_url
