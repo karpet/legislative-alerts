@@ -18,9 +18,9 @@ class BillsController < ApplicationController
   private
 
   def bill_details
-    state, session, bid = Base64.urlsafe_decode64(bill_id).split('/')
-    bid = bid.gsub(' ', '%20')
-    OpenStates::Bill.bill_details(state, session, bid)
+    # for backcompat, test if we are base64 encoded
+    Rails.logger.debug("bill id #{bill_id}")
+    OpenStates::Bill.try_find_by_os_bill_id(bill_id, current_user, Rails.logger)
   end
 
   def find_or_create_alert

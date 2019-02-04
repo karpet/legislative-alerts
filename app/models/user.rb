@@ -138,7 +138,8 @@ class User < ApplicationRecord
   def following_bill?(bill)
     alerts.bill.select do |alert|
       alert.query =~ /#{bill.bill_id}/ || 
-        alert.query =~ /#{bill.id}/
+        alert.query =~ /#{bill.url_id}/ ||
+        alert.new_bill_id == bill.url_id
     end.any?
   end
 

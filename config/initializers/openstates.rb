@@ -26,3 +26,26 @@ module OpenStatesExtensions
 end
 
 OpenStates::Bill.include OpenStatesExtensions::Bill
+
+class OpenStates::Bill
+  def self.find_by_os_bill_id(bill_id)
+    state, session, bid = Base64.urlsafe_decode64(bill_id).split('/')
+    bid = bid.gsub(' ', '%20')
+    bill_details(state, session, bid)
+  end
+
+  def self.try_find_by_os_bill_id(bill_id, current_user, logger)
+    begin
+      Base64.urlsafe_decode64(bill_id)
+      logger.debug("decode64 ok")
+      OpenStates::Bill.find_by_os_bill_id(bill_id)
+    rescue ArgumentError => _err
+      return unless current_user
+      # first 2 letters are state, but we don't know session or bill name.
+      logger.debug("Invalid base64 #{bill_id} -- looking for alert")
+      alert = current_user.find_alert_for_bill(bill_id)
+      logger.debug("Found alert #{alert} new id #{alert.new_bill_id}")
+      OpenStates::Bill.find_by_os_bill_id(alert.new_bill_id)
+    end
+  end
+end

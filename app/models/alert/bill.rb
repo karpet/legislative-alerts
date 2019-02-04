@@ -9,12 +9,20 @@ class Alert::Bill < Alert
 
   def os_bill
     @_os_bill ||= begin
-      OpenStates::Bill.find_by_openstates_id(parsed_query[:os_bill_id])
+      OpenStates::Bill.find_by_os_bill_id(parsed_query[:os_bill_id])
     rescue Faraday::ResourceNotFound => err
       # if it no longer exists, deactivate the alert
       update!(status: :archived)
       false
     end
+  end
+
+  def new_bill_id
+    bill_id = name
+    return unless description && description.match(/^\[..\ .+?\]/)
+    state = description.match(/^\[(..)/)[1]
+    session = description.match(/^\[..\ (.+?)\]/)[1]
+    Base64.urlsafe_encode64(sprintf("%s/%s/%s", state, session, bill_id))
   end
 
   def os_url
