@@ -4,6 +4,9 @@ test:
 alerts:
 	bundle exec rake alerts:check
 
+report:
+	bundle exec rake alerts:report
+
 db:
 	bundle exec rails dbconsole
 

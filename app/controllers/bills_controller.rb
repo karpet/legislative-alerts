@@ -1,4 +1,6 @@
 class BillsController < ApplicationController
+  include BillFinder
+
   before_action :authenticate_user!, only: [:follow, :unfollow]
 
   def show
@@ -17,12 +19,6 @@ class BillsController < ApplicationController
 
   private
 
-  def bill_details
-    # for backcompat, test if we are base64 encoded
-    Rails.logger.debug("bill id #{bill_id}")
-    OpenStates::Bill.try_find_by_os_bill_id(bill_id, current_user, Rails.logger)
-  end
-
   def find_or_create_alert
     @alert = current_user.find_alert_for_bill(bill_id)
     @alert ||= current_user.create_alert_for_bill(bill_params)
@@ -31,10 +27,6 @@ class BillsController < ApplicationController
   def find_and_delete_alert
     @alert = current_user.find_alert_for_bill(bill_id)
     @alert.destroy! if @alert.present?
-  end
-
-  def bill_id
-    params.require(:id)
   end
 
   def bill_params

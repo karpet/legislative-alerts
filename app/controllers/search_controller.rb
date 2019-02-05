@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   include FormHelper
+  include BillFinder
 
   def index
     return unless query.present?
@@ -10,7 +11,7 @@ class SearchController < ApplicationController
 
   def show
     query
-    @bills = [OpenStates::Bill.find_by_openstates_id(params[:id])]
+    @bills = [bill_details]
     render :index
   end
 
@@ -25,8 +26,7 @@ class SearchController < ApplicationController
   end
 
   def bill
-    bill_id = params.require(:id)
-    @bill = OpenStates::Bill.find_by_openstates_id(bill_id)
+    @bill = bill_details
     render json: @bill
   end
 

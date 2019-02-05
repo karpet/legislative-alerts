@@ -10,7 +10,7 @@
             = link_to 'Sign in for alerts', new_user_session_path, class: 'btn btn-default'
       %td.result
         .bill_id
-          = link_to bill.bill_id, search_bill_path(bill.id), remote: true,
+          = link_to bill.bill_id, search_bill_path(bill.url_id), remote: true,
               data: { toggle: 'modal', target: '#bill-details-modal' }
           &nbsp;
           &#183;
