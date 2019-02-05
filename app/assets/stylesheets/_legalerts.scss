@@ -2,6 +2,21 @@
   margin-left: 1em;
 }
 
+#footer {
+  color: #fff;
+  background-color: $brand-primary;
+  border-top: 1px solid #eee;
+  padding: 1em;
+
+  a {
+    color: #fff;
+  }
+
+  .footer-link {
+    margin-right: 2em;
+  }
+}
+
 .row {
   margin-right: 0;
 }
