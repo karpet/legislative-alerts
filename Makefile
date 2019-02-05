@@ -19,6 +19,9 @@ run:
 runprod:
 	foreman start -f Procfile.production
 
+start:
+	./run.sh
+
 deploy:
 	ssh legalerts@legalerts.us 'cd legislative-alerts && bin/deploy'
 
