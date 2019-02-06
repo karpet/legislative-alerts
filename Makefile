@@ -20,7 +20,8 @@ runprod:
 	foreman start -f Procfile.production
 
 start:
-	./run.sh
+	source $$HOME/.rvm/environments/ruby-`cat .ruby-version`
+	/usr/bin/nohup make runprod > log/nohup.log &
 
 deploy:
 	ssh legalerts@legalerts.us 'cd legislative-alerts && bin/deploy'
