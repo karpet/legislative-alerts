@@ -42,9 +42,9 @@ class OpenStates::Bill
     rescue ArgumentError => _err
       return unless current_user
       # first 2 letters are state, but we don't know session or bill name.
-      logger.debug("Invalid base64 #{bill_id} -- looking for alert")
+      logger.warn("Invalid base64 #{bill_id} -- looking for alert")
       alert = current_user.find_alert_for_bill(bill_id)
-      logger.debug("Found alert #{alert} new id #{alert.new_bill_id}")
+      logger.warn("Found alert #{alert} new id #{alert.new_bill_id}")
       OpenStates::Bill.find_by_os_bill_id(alert.new_bill_id)
     end
   end

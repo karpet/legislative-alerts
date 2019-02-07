@@ -91,8 +91,8 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
     config.lograge.enabled = true
-  config.assets.quiet = true
-end
+    config.assets.quiet = true
+  end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
