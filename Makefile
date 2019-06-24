@@ -20,7 +20,6 @@ runprod:
 	foreman start -f Procfile.production
 
 start:
-	source $$HOME/.rvm/environments/ruby-`cat .ruby-version`
 	/usr/bin/nohup make runprod > log/nohup.log &
 
 stop:
