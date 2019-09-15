@@ -5,7 +5,7 @@ sudo: false
 notifications:
   email: false
 before_script:
-  - cp config/database.travis.yml config/database.yml
+  - cp config/database.yml.travis config/database.yml
   - psql -c 'create database legalerts_test;' -U postgres
   - bundle exec rake db:create db:migrate --trace
 cache: bundler
