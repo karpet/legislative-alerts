@@ -7,5 +7,7 @@ notifications:
 before_script:
   - bundle exec rake db:create db:migrate --trace
 cache: bundler
+services:
+  - postgresql
 addons:
   postgresql: 9.2
