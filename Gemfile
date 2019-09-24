@@ -5,15 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.3.3'
-#ruby '2.6.1'
+#ruby '2.3.3'
+ruby '2.6.1'
 
 gem 'bh'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.7.1'
 gem 'dotenv-rails'
 gem 'erubi'
 gem 'gibbon'

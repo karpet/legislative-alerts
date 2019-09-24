@@ -1,11 +1,14 @@
 language: ruby
 rvm:
- - ruby-2.3.3
+ - ruby-2.6.1
 sudo: false
 notifications:
   email: false
 before_script:
-  - bundle exec rake db:create db:migrate --trace
+  - cp config/database.travis.yml config/database.yml
+  - bundle exec rake db:create db:schema:load db:seed --trace
 cache: bundler
+services:
+  - postgresql
 addons:
-  postgresql: 9.2
+  postgresql: 9.4
