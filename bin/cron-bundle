@@ -1,0 +1,5 @@
+#!/bin/sh
+
+source $HOME/.rvm/environments/ruby-`cat .ruby-version`
+
+bundle $@
