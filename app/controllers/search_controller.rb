@@ -48,7 +48,8 @@ class SearchController < ApplicationController
   end
 
   def text_query
-    search_params[:q]
+    return unless search_params[:q].present?
+    search_params[:q].split.join(' & ')
   end
 
   def state_filter
