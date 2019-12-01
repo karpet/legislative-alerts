@@ -17,7 +17,7 @@ RSpec.describe ApplicationController, :type => :controller do
     ENV['HTTP_AUTH_PASSWORD'] = nil
 
     get :index
-    expect( response ).to be_success
+    expect( response ).to be_successful
   end
 
   it "should request authentication if http_auth is set" do
@@ -39,7 +39,7 @@ RSpec.describe ApplicationController, :type => :controller do
     request.env['HTTP_AUTHORIZATION'] = credentials
 
     get :index
-    expect( response ).to be_success
+    expect( response ).to be_successful
 
     ENV['HTTP_AUTH_USERNAME'] = nil
     ENV['HTTP_AUTH_PASSWORD'] = nil
