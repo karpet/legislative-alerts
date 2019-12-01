@@ -74,6 +74,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -266,6 +267,9 @@ GEM
     premailer-rails (1.10.3)
       actionmailer (>= 3)
       premailer (~> 1.7, >= 1.7.9)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (4.0.1)
     puma (3.12.1)
     rack (2.0.7)
@@ -465,6 +469,7 @@ DEPENDENCIES
   openstates!
   pg (~> 0.21.0)
   premailer-rails
+  pry
   puma (~> 3.0)
   rails
   rails-controller-testing
