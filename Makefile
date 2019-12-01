@@ -13,6 +13,11 @@ db:
 console:
 	bundle exec rails console
 
+c: console
+
+install:
+	bundle check || bundle install
+
 run:
 	foreman start
 
