@@ -60,10 +60,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.smtp_settings = {
-    address: 'smtp.mandrillapp.com',
+    address: 'smtp.mailgun.org',
     port: '587',
-    authentication: 'login',
-    enable_starttls_auto: true,
+    authentication: :plain,
+    domain: 'mail.legalerts.us',
     user_name: ENV['SMTP_USERNAME'],
     password: ENV['SMTP_PASSWORD'],
   }
