@@ -19,8 +19,19 @@ class Alert::Search < Alert
     false
   end
 
+  def os_ts_query
+    parsed_query.merge(q: ts_query)
+  end
+
+  def ts_query
+    q = parsed_query[:q]
+    return q if q =~ /&\|/
+    tokens = q.split
+    tokens.join(' & ')
+  end
+
   def os_results
-    @_os_results ||= OpenStates::Bill.where(parsed_query.merge(per_page: 10, fields: OS_FIELDS))
+    @_os_results ||= OpenStates::Bill.where(os_ts_query.merge(per_page: 10, fields: OS_FIELDS))
   end
 
   def url_query
