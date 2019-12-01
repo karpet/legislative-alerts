@@ -49,6 +49,7 @@ class SearchController < ApplicationController
 
   def text_query
     return unless search_params[:q].present?
+    return search_params[:q] if search_params[:q] =~ /&\|/
     search_params[:q].split.join(' & ')
   end
 
