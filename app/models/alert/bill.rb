@@ -13,6 +13,9 @@ class Alert::Bill < Alert
       if bill_id.length == 11
         bill_id = new_bill_id
       end
+
+      fail Faraday::ResourceNotFound, id unless bill_id
+
       OpenStates::Bill.try_find_by_os_bill_id(bill_id, user, Rails.logger)
     rescue Faraday::ResourceNotFound => err
       # if it no longer exists, deactivate the alert
@@ -47,6 +50,10 @@ class Alert::Bill < Alert
 
   def bill_has_changed?(bill)
     return unless bill
+    return false if bill.action_dates[:last].blank?
+
+    Rails.logger.debug("last action date: #{bill.action_dates[:last]}")
+
     DateTime.parse(bill.action_dates[:last]) > last_run_at
   end
 end
