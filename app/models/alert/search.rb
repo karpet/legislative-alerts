@@ -6,7 +6,7 @@ class Alert::Search < Alert
   end
 
   def check
-    if results_have_changed?(query)
+    if os_results.any? && results_have_changed?(query)
       return update_as_run(os_checksum(recent_actions))
     end
   end
