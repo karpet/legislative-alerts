@@ -25,7 +25,10 @@ class Alert::Search < Alert
 
   def ts_query
     q = parsed_query[:q]
+
+    return if q.blank?
     return q if q =~ /[&\|]/
+
     tokens = q.split
     tokens.join(' & ')
   end
