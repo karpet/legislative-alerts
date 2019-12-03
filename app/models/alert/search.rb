@@ -47,8 +47,6 @@ class Alert::Search < Alert
     end
   end
 
-  private
-
   def results_have_changed?(_query)
     checksum != os_checksum(recent_actions)
   end
