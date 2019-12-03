@@ -29,7 +29,7 @@ start:
 
 stop:
 	(test -f tmp/pids/puma.pid && kill -HUP `cat tmp/pids/puma.pid`) || echo 'puma not running'
-	(test -f tmp/pids/delayed_job.pid && kill -HUP `cat tmp/pids/delayed_job.pid`) || echo 'delayed_job not running'
+	bundle exec bin/delayed_job stop
 
 deploy:
 	ssh legalerts@legalerts.us 'cd legislative-alerts && bin/deploy'
