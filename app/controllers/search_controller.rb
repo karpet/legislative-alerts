@@ -27,7 +27,7 @@ class SearchController < ApplicationController
 
   def bill
     @bill = bill_details
-    render json: @bill
+    render json: @bill.as_json.merge(url_id: @bill.url_id)
   end
 
   private
