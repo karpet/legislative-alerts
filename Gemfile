@@ -7,7 +7,7 @@ end
 
 ruby '2.6.1'
 
-#gem 'bh'
+gem 'bh'
 gem 'bootstrap-sass'
 #gem 'cancancan'
 #gem 'daemons'
@@ -57,7 +57,7 @@ group :development, :test do
   gem 'database_cleaner'
 #  gem 'launchy'
   gem 'mailcatcher'
-#  gem 'rails-controller-testing'
+  gem 'rails-controller-testing'
 #  gem 'better_errors'
 #  gem 'binding_of_caller'
 #  gem 'sinatra', '2.0.0.beta2'
