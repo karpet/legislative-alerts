@@ -12,6 +12,8 @@ class Alert < ApplicationRecord
   scope :recent, -> { order(created_at: 'desc') }
   scope :by_name, -> { order('LOWER(name)') }
 
+  attr_accessor :payload_string
+
   def self.humanize_query(query)
     clauses = []
     query.each do |k, v|
@@ -64,7 +66,10 @@ class Alert < ApplicationRecord
   end
 
   def os_checksum(os_payload)
-    Digest::SHA256.hexdigest os_payload.to_json
+    self.payload_string = os_payload.to_json
+    checksum = Digest::SHA256.hexdigest self.payload_string
+    Rails.cache.write("alert-#{id}-#{checksum}", self.payload_string)
+    checksum
   end
 
   def checksum_short
@@ -73,7 +78,17 @@ class Alert < ApplicationRecord
 
   private
 
+  def write_payload_diff(sum)
+    old_key = "alert-#{id}-#{checksum}"
+    new_key = "alert-#{id}-#{sum}"
+    old_payload = Rails.cache.fetch(old_key) { "{}" } # empty hash if not found
+    new_payload = self.payload_string
+    diff = Hashdiff.diff(JSON.parse(old_payload), JSON.parse(new_payload))
+    Rails.cache.write("alert-#{id}-#{sum}-diff", diff)
+  end
+
   def update_as_run(sum)
+    write_payload_diff(sum)
     self.checksum = sum
     update_columns(last_run_at: Time.zone.now, checksum: sum)
   end
