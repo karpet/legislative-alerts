@@ -9,7 +9,7 @@ ruby '2.6.1'
 
 gem 'bh'
 gem 'bootstrap-sass'
-#gem 'cancancan'
+gem 'cancancan'
 #gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'devise', '~> 4.7.1'
