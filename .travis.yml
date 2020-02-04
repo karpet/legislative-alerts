@@ -6,6 +6,7 @@ notifications:
   email: false
 before_script:
   - cp config/database.travis.yml config/database.yml
+  - touch .env.test
   - bundle exec rake db:create db:schema:load db:seed --trace
 cache: bundler
 services:
