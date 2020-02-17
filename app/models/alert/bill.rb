@@ -50,10 +50,16 @@ class Alert::Bill < Alert
 
   def bill_has_changed?(bill)
     return unless bill
+    return true unless checksum # we have not checked before
     return false if bill.action_dates[:last].blank?
 
     Rails.logger.debug("last action date: #{bill.action_dates[:last]}")
 
-    DateTime.parse(bill.action_dates[:last]) > last_run_at
+    # most recent dates isn't always "last"
+    dates = bill.action_dates.values_at('first', 'last').sort
+
+    last_date = dates.first
+
+    DateTime.parse(last_date) > last_run_at
   end
 end
