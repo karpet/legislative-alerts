@@ -19,7 +19,11 @@ class Alert::Bill < Alert
       OpenStates::Bill.try_find_by_os_bill_id(bill_id, user, Rails.logger)
     rescue Faraday::ResourceNotFound => err
       # if it no longer exists, deactivate the alert
-      update!(status: :archived)
+      archived!
+      false
+    rescue Faraday::ClientError => err
+      # non-200 response of some kind. Log it and move on.
+      errored!
       false
     end
   end

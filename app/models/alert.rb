@@ -1,7 +1,7 @@
 class Alert < ApplicationRecord
   self.inheritance_column = :alert_type
 
-  enum status: { active: 'active', archived: 'archived' }
+  enum status: { active: 'active', archived: 'archived', errored: 'errored' }
 
   belongs_to :user
 
