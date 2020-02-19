@@ -16,8 +16,8 @@
     = bill.session
     %br
     Last Action:
-    = recent_action['action']
+    = recent_action&.dig('action')
     %br
-    = recent_action['date']
+    = recent_action&.dig('date')
 
   %hr
