@@ -34,7 +34,16 @@ class Alert::Search < Alert
   end
 
   def os_results
-    @_os_results ||= OpenStates::Bill.where(os_ts_query.merge(per_page: 10, fields: OS_FIELDS))
+    @_os_results ||= begin
+      OpenStates::Bill.where(os_ts_query.merge(per_page: 10, fields: OS_FIELDS))
+    rescue Faraday::ClientError => error
+      if error.status.to_s == "429"
+        # busy try again later
+      else
+        errored!
+      end
+      [] # either way return empty array
+    end
   end
 
   def url_query

@@ -59,6 +59,8 @@ class Alert < ApplicationRecord
 
   def parsed_query
     JSON.parse(query, symbolize_names: true)
+  rescue # if alert was hand-edited it may not be valid JSON anymore
+    { q: query.to_s }
   end
 
   def mark_as_sent
