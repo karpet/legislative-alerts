@@ -91,7 +91,6 @@ class Alert < ApplicationRecord
 
   def update_as_run(sum)
     write_payload_diff(sum)
-    self.checksum = sum
-    update_columns(last_run_at: Time.zone.now, checksum: sum)
+    update!(last_run_at: Time.zone.now, checksum: sum)
   end
 end
