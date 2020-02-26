@@ -37,7 +37,7 @@ class Alert::Search < Alert
     @_os_results ||= begin
       OpenStates::Bill.where(os_ts_query.merge(per_page: 10, fields: OS_FIELDS))
     rescue Faraday::ClientError => error
-      if error.status.to_s == "429"
+      if error.to_s(/429/)
         # busy try again later
       else
         errored!
