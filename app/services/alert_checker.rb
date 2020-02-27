@@ -11,7 +11,6 @@ class AlertChecker
       m = AlertMailer.user_alert(alert).deliver_later
       Delayed::Worker.logger.debug('deliver_later: ' + m.serialize.to_s)
       alert.mark_as_sent
-      sleep 1 # avoid rate limiting
     end
   end
 
@@ -19,6 +18,7 @@ class AlertChecker
     to_send = []
     Alert.active.where(user: user).where('last_run_at < ?', run_at).each do |alert|
       to_send << alert if alert.check
+      sleep 5 # avoid rate limiting
     end
     to_send
   end
