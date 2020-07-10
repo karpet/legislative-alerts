@@ -51,9 +51,10 @@ class Alert::Search < Alert
   end
 
   def recent_actions
-    os_results.select { |bill| bill.actions.any? }.map do |bill|
+    actions = os_results.select { |bill| bill.actions.any? }.map do |bill|
       bill.actions.last.slice('action', 'date')
     end
+    actions.sort_by { |a| [a['date'], a['action']] }.reverse
   end
 
   def results_have_changed?(_query)
